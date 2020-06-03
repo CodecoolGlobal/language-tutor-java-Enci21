@@ -2,7 +2,12 @@ package com.codecool.languagetutor.training;
 
 import android.app.Application;
 
+import com.codecool.languagetutor.roomDataBase.Word;
 import com.codecool.languagetutor.roomDataBase.WordRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class TrainingPresenter implements TrainingContract.Presenter {
 
@@ -22,5 +27,17 @@ public class TrainingPresenter implements TrainingContract.Presenter {
     @Override
     public void onDetach() {
         this.view = null;
+    }
+
+
+    @Override
+    public List<Word> getWords(int rounds) {
+        List<Word> allWords = repository.getAll();
+        Random random = new Random();
+        List<Word> trainingWords = new ArrayList();
+        for (int i=0; i< rounds; i++){
+            trainingWords.add(allWords.get(random.nextInt(allWords.size())));
+        }
+        return trainingWords;
     }
 }

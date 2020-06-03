@@ -5,4 +5,7 @@
     <string name="history_btn_label">History</string>
     <string name="save_btn_label">Save</string>
     <string name="spinner_btn_label">Let\'s Go</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="check_btn_label">Check</string>
 </resources>

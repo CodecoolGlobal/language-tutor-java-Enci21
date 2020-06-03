@@ -11,6 +11,9 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.codecool.languagetutor.R;
+import com.codecool.languagetutor.roomDataBase.Word;
+
+import java.util.List;
 
 public class TrainingActivity extends AppCompatActivity implements TrainingContract.View {
 
@@ -39,7 +42,9 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
             @Override
             public void onClick(View v) {
                 int numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
+                List<Word> words = presenter.getWords(numberOfWords);
                 fragmentCollectionAdapter.setRounds(numberOfWords);
+                fragmentCollectionAdapter.setWords(words);
             }
         });
 
