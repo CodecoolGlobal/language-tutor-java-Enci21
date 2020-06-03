@@ -4,15 +4,44 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/app_margin"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/button_add_word"
+        android:layout_width="@dimen/button_width"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginBottom="16dp"
+        android:text="@string/add_word_btn_label"
+        app:layout_constraintBottom_toTopOf="@+id/button_training"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/button_training"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/train_btn_label"
+        app:layout_constraintBottom_toTopOf="@+id/button_history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_add_word" />
+
+    <Button
+        android:id="@+id/button_history"
+        android:layout_width="@dimen/button_width"
+        android:layout_height="wrap_content"
+        android:text="@string/history_btn_label"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_training" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
