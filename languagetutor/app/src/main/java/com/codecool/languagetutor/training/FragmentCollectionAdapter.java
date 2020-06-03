@@ -2,14 +2,14 @@ package com.codecool.languagetutor.training;
 
 import android.os.Bundle;
 
-import com.codecool.languagetutor.roomDataBase.Word;
-
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+
+import com.codecool.languagetutor.roomDataBase.Word;
+
+import java.util.List;
 
 public class FragmentCollectionAdapter extends FragmentStatePagerAdapter {
 
@@ -45,4 +45,5 @@ public class FragmentCollectionAdapter extends FragmentStatePagerAdapter {
     public void setWords(List<Word> words) {
         this.words = words;
     }
+
 }

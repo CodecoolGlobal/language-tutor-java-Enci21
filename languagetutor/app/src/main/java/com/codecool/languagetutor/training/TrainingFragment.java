@@ -19,6 +19,8 @@ public class TrainingFragment extends Fragment {
 
     private String translation;
 
+    private TrainingInterface trainingInterface;
+
     @BindView(R.id.answer)
     EditText answer;
     @BindView(R.id.english_word)
@@ -26,15 +28,16 @@ public class TrainingFragment extends Fragment {
     @BindView(R.id.check_button)
     Button checkButton;
     @BindView(R.id.correct_answer)
-    TextView correctAnswer;
+    TextView correctAnswerText;
+
+    View view;
 
     public TrainingFragment() {
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_training, container, false);
+        view = inflater.inflate(R.layout.fragment_training, container, false);
         ButterKnife.bind(this, view);
         String english_word = getArguments().getString("english_word");
         translation = getArguments().getString("translation");
@@ -50,7 +53,7 @@ public class TrainingFragment extends Fragment {
 
     private void checkAnswer() {
         String answerGiven = answer.getText().toString();
-        if (answerGiven.toLowerCase().equals(translation)){
+        if (answerGiven.toLowerCase().equals(translation)) {
             showCorrect();
         } else {
             showIncorrect();
@@ -58,13 +61,17 @@ public class TrainingFragment extends Fragment {
     }
 
     private void showIncorrect() {
-        correctAnswer.setText(translation);
-        correctAnswer.setVisibility(View.VISIBLE);
+        correctAnswerText.setText(translation);
+        correctAnswerText.setVisibility(View.VISIBLE);
+        correctAnswerText.setTextColor(getResources().getColor(R.color.incorrectColor));
+        view.setBackgroundColor(getResources().getColor(R.color.incorrectBackground));
     }
 
     private void showCorrect() {
-
+        correctAnswerText.setText("Correct!");
+        correctAnswerText.setVisibility(View.VISIBLE);
+        correctAnswerText.setTextColor(getResources().getColor(R.color.correctColor));
+        view.setBackgroundColor(getResources().getColor(R.color.correctBackground));
     }
-
 
 }
