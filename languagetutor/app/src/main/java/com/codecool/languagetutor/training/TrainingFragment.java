@@ -1,10 +1,6 @@
 package com.codecool.languagetutor.training;
 
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import butterknife.BindView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +8,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 import com.codecool.languagetutor.R;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class TrainingFragment extends Fragment {
 
@@ -34,6 +35,7 @@ public class TrainingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_training, container, false);
+        ButterKnife.bind(this, view);
         String english_word = getArguments().getString("english_word");
         translation = getArguments().getString("translation");
         englishWord.setText(english_word);

@@ -9,9 +9,9 @@ import java.util.List;
 public interface TrainingContract {
 
     interface View extends BaseView<Presenter> {
-
+        void showFragments(List<Word> words);
     }
     interface Presenter extends BasePresenter{
-        List<Word> getWords(int rounds);
+        void getWords(int rounds);
     }
 }

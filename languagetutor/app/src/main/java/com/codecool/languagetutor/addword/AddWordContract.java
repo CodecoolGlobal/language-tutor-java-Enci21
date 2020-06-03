@@ -7,10 +7,11 @@ import com.codecool.languagetutor.roomDataBase.Word;
 public interface AddWordContract {
 
     interface View extends BaseView<Presenter> {
-
+        void displayToast();
     }
 
-    interface Presenter extends BasePresenter{
+    interface Presenter extends BasePresenter {
         void insert(Word word);
+
     }
 }

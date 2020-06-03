@@ -14,7 +14,9 @@ public class WordRepository {
     }
 
     public void insert(Word word){
-        dao.addWord(word);
+        WordDatabase.databaseWriteExecutor.execute(() -> {
+            dao.addWord(word);
+        });
     }
 
     public List<Word> getAll(){

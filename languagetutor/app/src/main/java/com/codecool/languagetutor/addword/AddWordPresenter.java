@@ -30,5 +30,6 @@ public class AddWordPresenter implements AddWordContract.Presenter {
     @Override
     public void insert(Word word) {
         repository.insert(word);
+        view.displayToast();
     }
 }

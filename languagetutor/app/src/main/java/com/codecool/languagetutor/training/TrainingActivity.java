@@ -1,19 +1,22 @@
 package com.codecool.languagetutor.training;
 
-import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.roomDataBase.Word;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class TrainingActivity extends AppCompatActivity implements TrainingContract.View {
 
@@ -23,6 +26,9 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     Spinner spinner;
     @BindView(R.id.spinner_button)
     Button spinnerButton;
+
+    @BindView(R.id.pager)
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,25 +41,30 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         ButterKnife.bind(this);
 
         Integer[] options = {5, 10, 20};
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, R.layout.activity_training, options);
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
         spinnerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
-                List<Word> words = presenter.getWords(numberOfWords);
-                fragmentCollectionAdapter.setRounds(numberOfWords);
-                fragmentCollectionAdapter.setWords(words);
+                Toast.makeText(v.getContext(), spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                presenter.getWords(numberOfWords);
             }
         });
-
-        fragmentCollectionAdapter = new FragmentCollectionAdapter(getSupportFragmentManager());
-
     }
 
     @Override
     public void setPresenter(TrainingContract.Presenter presenter) {
-        this.presenter= presenter;
+        this.presenter = presenter;
+    }
+
+    @Override
+    public void showFragments(List<Word> words) {
+        fragmentCollectionAdapter = new FragmentCollectionAdapter(getSupportFragmentManager());
+        fragmentCollectionAdapter.setRounds(words.size());
+        fragmentCollectionAdapter.setWords(words);
+        viewPager.setAdapter(fragmentCollectionAdapter);
     }
 }
