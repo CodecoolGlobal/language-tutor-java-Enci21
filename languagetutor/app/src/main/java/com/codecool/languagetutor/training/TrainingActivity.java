@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TrainingActivity extends AppCompatActivity implements TrainingContract.View {
+public class TrainingActivity extends AppCompatActivity implements TrainingContract.View, TrainingFragment.OnResultListener {
 
     private TrainingContract.Presenter presenter;
     private FragmentCollectionAdapter fragmentCollectionAdapter;
@@ -66,5 +66,14 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         fragmentCollectionAdapter.setRounds(words.size());
         fragmentCollectionAdapter.setWords(words);
         viewPager.setAdapter(fragmentCollectionAdapter);
+    }
+
+//    public void goToNextPage(){
+//        viewPager.setCurrentItem(viewPager.getCurrentItem() +1);
+//    }
+
+    @Override
+    public void onResult() {
+        viewPager.setCurrentItem(viewPager.getCurrentItem() +1);
     }
 }
