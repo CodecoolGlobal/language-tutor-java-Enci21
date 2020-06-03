@@ -4,4 +4,5 @@
     <string name="train_btn_label">Train</string>
     <string name="history_btn_label">History</string>
     <string name="save_btn_label">Save</string>
+    <string name="spinner_btn_label">Let\'s Go</string>
 </resources>
