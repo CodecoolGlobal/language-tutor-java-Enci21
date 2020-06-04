@@ -35,8 +35,6 @@ public class FragmentCollectionAdapter extends FragmentStatePagerAdapter {
             TrainingFragment trainingFragment = new TrainingFragment();
             Bundle bundle = new Bundle();
             Word word = words.get(position);
-            System.out.println("----------------------------------------------  Position" + Integer.toString(position));
-            System.out.println(rounds);
             bundle.putLong("id", word.getId());
             bundle.putString("english_word", word.getEnWord());
             bundle.putString("translation", word.getTranslation());
