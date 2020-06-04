@@ -13,7 +13,7 @@ import java.util.List;
 
 public class FragmentCollectionAdapter extends FragmentStatePagerAdapter {
 
-    private int rounds = 0;
+    private int rounds;
     private List<Word> words;
 
     public FragmentCollectionAdapter(@NonNull FragmentManager fm) {
@@ -27,19 +27,27 @@ public class FragmentCollectionAdapter extends FragmentStatePagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        TrainingFragment trainingFragment = new TrainingFragment();
-        Bundle bundle = new Bundle();
-        Word word = words.get(position);
-        position += 1;
-        bundle.putString("english_word",word.getEnWord());
-        bundle.putString("translation",word.getTranslation());
-        trainingFragment.setArguments(bundle);
-        return trainingFragment;
+        if (position == rounds) {
+            ResultFragment fragment = new ResultFragment();
+            return fragment;
+
+        } else {
+            TrainingFragment trainingFragment = new TrainingFragment();
+            Bundle bundle = new Bundle();
+            Word word = words.get(position);
+            System.out.println("----------------------------------------------  Position" + Integer.toString(position));
+            System.out.println(rounds);
+            bundle.putLong("id", word.getId());
+            bundle.putString("english_word", word.getEnWord());
+            bundle.putString("translation", word.getTranslation());
+            trainingFragment.setArguments(bundle);
+            return trainingFragment;
+        }
     }
 
     @Override
     public int getCount() {
-        return rounds;
+        return rounds + 1;
     }
 
     public void setWords(List<Word> words) {

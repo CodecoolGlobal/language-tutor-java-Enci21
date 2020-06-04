@@ -32,12 +32,14 @@ public class TrainingFragment extends Fragment {
     TextView correctAnswerText;
 
     View view;
+    Long wordId;
+    String english_word;
 
     private OnResultListener callback;
-    private  int position;
+    private int position;
 
-    public interface OnResultListener{
-        void onResult();
+    public interface OnResultListener {
+        void onResult(boolean isCorrect, Long id);
     }
 
     @Override
@@ -45,7 +47,7 @@ public class TrainingFragment extends Fragment {
         super.onAttach(context);
         try {
             callback = (OnResultListener) context;
-        } catch (ClassCastException e){
+        } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement OnResultListener");
         }
     }
@@ -62,7 +64,8 @@ public class TrainingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_training, container, false);
         ButterKnife.bind(this, view);
-        String english_word = getArguments().getString("english_word");
+        wordId = getArguments().getLong("id");
+        english_word = getArguments().getString("english_word");
         translation = getArguments().getString("translation");
         englishWord.setText(english_word);
         checkButton.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +84,7 @@ public class TrainingFragment extends Fragment {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onResult();
+                    callback.onResult(true, wordId);
                 }
             }, 2000);
 
@@ -92,7 +95,7 @@ public class TrainingFragment extends Fragment {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onResult();
+                    callback.onResult(false, wordId);
                 }
             }, 2000);
 //        ((TrainingActivity) getActivity()).goToNextPage();

@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,6 +15,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.roomDataBase.Word;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -28,8 +31,17 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     @BindView(R.id.spinner_button)
     Button spinnerButton;
 
+    @BindView(R.id.howManyText)
+    TextView welcomeTraining;
+
     @BindView(R.id.pager)
     ViewPager viewPager;
+
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
+    List<Long> incorrectWords = new ArrayList<>();
+    int counter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +62,12 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
                 int numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
                 Toast.makeText(v.getContext(), "You will get " + spinner.getSelectedItem().toString() + " questions", Toast.LENGTH_SHORT).show();
                 presenter.getWords(numberOfWords);
+                progressBar.setMax(numberOfWords);
+                progressBar.setProgress(counter);
+                progressBar.setVisibility(View.VISIBLE);
+                welcomeTraining.setVisibility(View.GONE);
+                spinner.setVisibility(View.GONE);
+                spinnerButton.setVisibility(View.GONE);
             }
         });
     }
@@ -65,6 +83,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         fragmentCollectionAdapter.setRounds(words.size());
         fragmentCollectionAdapter.setWords(words);
         viewPager.setAdapter(fragmentCollectionAdapter);
+
     }
 
 //    public void goToNextPage(){
@@ -72,7 +91,16 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 //    }
 
     @Override
-    public void onResult() {
-        viewPager.setCurrentItem(viewPager.getCurrentItem() +1);
+    public void onResult(boolean isCorrect, Long wordId) {
+
+        if (!isCorrect) {
+            counter++;
+            incorrectWords.add(wordId);
+            progressBar.setProgress(counter);
+        } else {
+            counter++;
+            progressBar.setProgress(counter);
+        }
+        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
     }
 }
