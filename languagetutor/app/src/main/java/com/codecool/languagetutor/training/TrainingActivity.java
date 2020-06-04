@@ -7,7 +7,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import com.codecool.languagetutor.R;
@@ -18,7 +18,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TrainingActivity extends FragmentActivity implements TrainingContract.View {
+public class TrainingActivity extends AppCompatActivity implements TrainingContract.View, TrainingFragment.OnResultListener {
 
     private TrainingContract.Presenter presenter;
     private FragmentCollectionAdapter fragmentCollectionAdapter;
@@ -65,11 +65,14 @@ public class TrainingActivity extends FragmentActivity implements TrainingContra
         fragmentCollectionAdapter.setRounds(words.size());
         fragmentCollectionAdapter.setWords(words);
         viewPager.setAdapter(fragmentCollectionAdapter);
-
     }
 
+//    public void goToNextPage(){
+//        viewPager.setCurrentItem(viewPager.getCurrentItem() +1);
+//    }
+
     @Override
-    public void onBackPressed() {
-        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+    public void onResult() {
+        viewPager.setCurrentItem(viewPager.getCurrentItem() +1);
     }
 }

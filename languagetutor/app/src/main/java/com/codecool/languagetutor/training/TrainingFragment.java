@@ -1,5 +1,6 @@
 package com.codecool.languagetutor.training;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,7 +8,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.codecool.languagetutor.R;
@@ -18,8 +21,6 @@ import butterknife.ButterKnife;
 public class TrainingFragment extends Fragment {
 
     private String translation;
-
-    private TrainingInterface trainingInterface;
 
     @BindView(R.id.answer)
     EditText answer;
@@ -32,7 +33,29 @@ public class TrainingFragment extends Fragment {
 
     View view;
 
+    private OnResultListener callback;
+    private  int position;
+
+    public interface OnResultListener{
+        void onResult();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            callback = (OnResultListener) context;
+        } catch (ClassCastException e){
+            throw new ClassCastException(context.toString() + " must implement OnResultListener");
+        }
+    }
+
     public TrainingFragment() {
+    }
+
+    public static TrainingFragment getInstance(int position) {
+        TrainingFragment fragment = new TrainingFragment();
+        return fragment;
     }
 
     @Override
@@ -55,8 +78,13 @@ public class TrainingFragment extends Fragment {
         String answerGiven = answer.getText().toString();
         if (answerGiven.toLowerCase().equals(translation)) {
             showCorrect();
+            callback.onResult();
+//            ezzel is lehet a callback helyett
+//            ((TrainingActivity) getActivity()).goToNextPage();
         } else {
             showIncorrect();
+            callback.onResult();
+//        ((TrainingActivity) getActivity()).goToNextPage();
         }
     }
 
@@ -73,5 +101,6 @@ public class TrainingFragment extends Fragment {
         correctAnswerText.setTextColor(getResources().getColor(R.color.correctColor));
         view.setBackgroundColor(getResources().getColor(R.color.correctBackground));
     }
+
 
 }
