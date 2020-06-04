@@ -53,5 +53,7 @@ public class AddWordActivity extends AppCompatActivity implements AddWordContrac
     @Override
     public void displayToast() {
         Toast.makeText(this, "You added a new word!", Toast.LENGTH_SHORT).show();
+        englishWord.setText("");
+        translation.setText("");
     }
 }
