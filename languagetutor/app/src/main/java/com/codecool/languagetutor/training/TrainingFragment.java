@@ -2,13 +2,13 @@ package com.codecool.languagetutor.training;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -78,12 +78,23 @@ public class TrainingFragment extends Fragment {
         String answerGiven = answer.getText().toString();
         if (answerGiven.toLowerCase().equals(translation)) {
             showCorrect();
-            callback.onResult();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onResult();
+                }
+            }, 2000);
+
 //            ezzel is lehet a callback helyett
 //            ((TrainingActivity) getActivity()).goToNextPage();
         } else {
             showIncorrect();
-            callback.onResult();
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    callback.onResult();
+                }
+            }, 2000);
 //        ((TrainingActivity) getActivity()).goToNextPage();
         }
     }
