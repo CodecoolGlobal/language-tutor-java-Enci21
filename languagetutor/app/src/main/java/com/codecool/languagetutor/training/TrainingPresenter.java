@@ -8,8 +8,10 @@ import com.codecool.languagetutor.roomDataBase.Word;
 import com.codecool.languagetutor.roomDataBase.WordRepository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class TrainingPresenter implements TrainingContract.Presenter {
 
@@ -56,10 +58,14 @@ public class TrainingPresenter implements TrainingContract.Presenter {
         @Override
         protected void onPostExecute(List<Word> words) {
             super.onPostExecute(words);
-            Random random = new Random();
+            List<Integer> list = new ArrayList<>();
+            for (int i = 0; i < words.size(); i++) {
+                list.add(i);
+            }
+            Collections.shuffle(list);
             List<Word> trainingWords = new ArrayList();
             for (int i = 0; i < rounds; i++) {
-                trainingWords.add(words.get(random.nextInt(words.size())));
+                trainingWords.add(words.get(list.get(i)));
             }
             view.showFragments(trainingWords);
         }
