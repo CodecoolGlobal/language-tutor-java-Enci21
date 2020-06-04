@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Word.class}, version = 1, exportSchema = false)
+@Database(entities = {Word.class, History.class, HistoryWordCrossRef.class}, version = 1, exportSchema = false)
 public abstract class WordDatabase extends RoomDatabase {
 
     public abstract WordDao wordDao();
@@ -22,7 +22,7 @@ public abstract class WordDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (Database.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), WordDatabase.class, "word_db")
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), WordDatabase.class, "word_and_history_db")
                             .build();
                 }
             }

@@ -1,5 +1,6 @@
 package com.codecool.languagetutor.training;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -12,16 +13,20 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.codecool.languagetutor.MainActivity;
 import com.codecool.languagetutor.R;
+import com.codecool.languagetutor.roomDataBase.History;
 import com.codecool.languagetutor.roomDataBase.Word;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class TrainingActivity extends AppCompatActivity implements TrainingContract.View, TrainingFragment.OnResultListener {
+public class TrainingActivity extends AppCompatActivity implements TrainingContract.View, TrainingFragment.OnResultListener, ResultFragment.ClosingInterface {
 
     private TrainingContract.Presenter presenter;
     private FragmentCollectionAdapter fragmentCollectionAdapter;
@@ -40,7 +45,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
 
-    List<Long> incorrectWords = new ArrayList<>();
+    List<Word> incorrectWords = new ArrayList<>();
     int counter = 0;
 
     @Override
@@ -91,16 +96,24 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 //    }
 
     @Override
-    public void onResult(boolean isCorrect, Long wordId) {
-
+    public void onResult(boolean isCorrect, Word word) {
         if (!isCorrect) {
             counter++;
-            incorrectWords.add(wordId);
+            incorrectWords.add(word);
             progressBar.setProgress(counter);
         } else {
             counter++;
             progressBar.setProgress(counter);
         }
         viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+    }
+
+    @Override
+    public void onClose() {
+        Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
+        Date c = Calendar.getInstance().getTime();
+        History history = new History(c, "loasz");
+        presenter.save(history);
+        startActivity(intent);
     }
 }

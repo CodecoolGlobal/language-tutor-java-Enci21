@@ -3,6 +3,7 @@ package com.codecool.languagetutor.training;
 import android.app.Application;
 import android.os.AsyncTask;
 
+import com.codecool.languagetutor.roomDataBase.History;
 import com.codecool.languagetutor.roomDataBase.Word;
 import com.codecool.languagetutor.roomDataBase.WordRepository;
 
@@ -30,6 +31,12 @@ public class TrainingPresenter implements TrainingContract.Presenter {
         this.view = null;
     }
 
+
+    @Override
+    public void save(History history) {
+        repository.insertHistory(history);
+
+    }
 
     @Override
     public void getWords(int rounds) {

@@ -13,14 +13,24 @@ public class WordRepository {
         this.dao = database.wordDao();
     }
 
-    public void insert(Word word){
+    public void insert(Word word) {
         WordDatabase.databaseWriteExecutor.execute(() -> {
             dao.addWord(word);
         });
     }
 
-    public List<Word> getAll(){
+    public void insertHistory(History history) {
+        WordDatabase.databaseWriteExecutor.execute(() -> {
+            dao.insertHistory(history);
+        });
+    }
+
+    public List<Word> getAll() {
         return dao.getAllWords();
+    }
+
+    public List<History> getAllHistory() {
+        return dao.getAllHistory();
     }
 }
 

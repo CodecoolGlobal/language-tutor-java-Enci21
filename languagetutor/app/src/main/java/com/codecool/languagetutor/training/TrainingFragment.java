@@ -14,13 +14,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.codecool.languagetutor.R;
+import com.codecool.languagetutor.roomDataBase.Word;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TrainingFragment extends Fragment {
 
-    private String translation;
 
     @BindView(R.id.answer)
     EditText answer;
@@ -34,12 +34,13 @@ public class TrainingFragment extends Fragment {
     View view;
     Long wordId;
     String english_word;
+    private String translation;
 
     private OnResultListener callback;
     private int position;
 
     public interface OnResultListener {
-        void onResult(boolean isCorrect, Long id);
+        void onResult(boolean isCorrect, Word word);
     }
 
     @Override
@@ -79,12 +80,13 @@ public class TrainingFragment extends Fragment {
 
     private void checkAnswer() {
         String answerGiven = answer.getText().toString();
+        Word word = new Word(wordId, english_word, translation);
         if (answerGiven.toLowerCase().equals(translation)) {
             showCorrect();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onResult(true, wordId);
+                    callback.onResult(true, word);
                 }
             }, 2000);
 
@@ -95,7 +97,7 @@ public class TrainingFragment extends Fragment {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    callback.onResult(false, wordId);
+                    callback.onResult(false, word);
                 }
             }, 2000);
 //        ((TrainingActivity) getActivity()).goToNextPage();
