@@ -35,7 +35,7 @@ public class AddWordActivity extends AppCompatActivity implements AddWordContrac
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Word word = new Word(englishWord.getText().toString(), translation.getText().toString());
+                Word word = new Word(englishWord.getText().toString().trim(), translation.getText().toString().trim());
                 presenter.insert(word);
             }
         });

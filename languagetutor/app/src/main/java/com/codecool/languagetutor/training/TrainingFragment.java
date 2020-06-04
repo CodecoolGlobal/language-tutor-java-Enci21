@@ -79,7 +79,7 @@ public class TrainingFragment extends Fragment {
     }
 
     private void checkAnswer() {
-        String answerGiven = answer.getText().toString();
+        String answerGiven = answer.getText().toString().trim();
         Word word = new Word(wordId, english_word, translation);
         if (answerGiven.toLowerCase().equals(translation)) {
             showCorrect();
