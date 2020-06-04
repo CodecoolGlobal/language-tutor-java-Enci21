@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#2A067C</color>
+    <color name="colorAccent">#36469E</color>
+    <color name="correctColor">#2D9231</color>
+    <color name="correctBackground">#A6E6C5</color>
+    <color name="incorrectColor">#B62D23</color>
+    <color name="incorrectBackground">#EBB5AA</color>
+    <color name="background">#96c9e6</color>
+    <color name="trainingButton">#E9DB62</color>
+    <color name="historyButton">#61E4AF</color>
+    <color name="addMainButton">#CD76ED</color>
+
 </resources>

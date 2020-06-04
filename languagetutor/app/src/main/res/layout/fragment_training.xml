@@ -4,49 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".training.TrainingFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-            android:id="@+id/check_button"
+        <TextView
+            android:id="@+id/correct_answer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:text="@string/check_btn_label"
+            android:layout_marginTop="12dp"
+            android:textSize="30sp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/answer" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/english_word"
+            style="@style/englis_word_training_text_view"
+            android:layout_marginTop="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/correct_answer" />
 
         <EditText
             android:id="@+id/answer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:inputType="textPersonName"
+            style="@style/edit_text"
+            android:hint="@string/enter_the_translation_here"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/english_word" />
 
-        <TextView
-            android:id="@+id/english_word"
-            android:layout_width="53dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="32dp"
+        <Button
+            android:id="@+id/check_button"
+            style="@style/button"
+            android:text="@string/check_btn_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/correct_answer" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/correct_answer"
-            android:visibility="gone"
-            app:layout_constraintTop_toTopOf="parent"/>
-
+            app:layout_constraintTop_toBottomOf="@+id/answer" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

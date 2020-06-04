@@ -22,6 +22,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 
     private TrainingContract.Presenter presenter;
     private FragmentCollectionAdapter fragmentCollectionAdapter;
+
     @BindView(R.id.spinner)
     Spinner spinner;
     @BindView(R.id.spinner_button)
@@ -37,19 +38,17 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 
         presenter = new TrainingPresenter(this, getApplication());
         presenter.onAttach();
-
         ButterKnife.bind(this);
 
         Integer[] options = {5, 10, 20};
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-
         spinnerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
-                Toast.makeText(v.getContext(), spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "You will get " + spinner.getSelectedItem().toString() + " questions", Toast.LENGTH_SHORT).show();
                 presenter.getWords(numberOfWords);
             }
         });
