@@ -1,13 +1,15 @@
 package com.codecool.languagetutor.history;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.roomDataBase.History;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -18,9 +20,11 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
 
     private HistoryContract.Presenter presenter;
+    private List<History> allHistory = new ArrayList<>();
+    HistoryListAdapter adapter;
 
-    @BindView(R.id.textView2)
-    TextView anything;
+    @BindView(R.id.historyRecyclerView)
+    RecyclerView historyRecyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,9 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
         presenter = new HistoryPresenter(this, getApplication());
         presenter.getAllHistory();
+        adapter = new HistoryListAdapter(allHistory);
+        historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        historyRecyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -39,6 +46,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
     @Override
     public void showHistory(List<History> history) {
-        anything.setText(history.get(0).getRatio());
+        this.allHistory.addAll(history);
+        adapter.notifyDataSetChanged();
     }
 }
