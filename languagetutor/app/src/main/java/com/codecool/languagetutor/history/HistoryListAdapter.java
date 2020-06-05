@@ -19,7 +19,6 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
     List<History> allHistories;
 
-
     public HistoryListAdapter(List<History> allHistories) {
         this.allHistories = allHistories;
     }
@@ -36,8 +35,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         History history = allHistories.get(position);
         holder.ratio.setText(history.getRatio());
         holder.date.setText(history.getDate().toString());
-        holder.incorrectWords.setText(history.getIncorrectWords().toString());
-
+        holder.incorrectWords.setText(history.getIncorrectWords());
     }
 
     @Override

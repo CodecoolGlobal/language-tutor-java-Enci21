@@ -37,10 +37,10 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
         ButterKnife.bind(this);
 
         presenter = new HistoryPresenter(this, getApplication());
-        presenter.getAllHistory();
         adapter = new HistoryListAdapter(allHistory);
         historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         historyRecyclerView.setAdapter(adapter);
+        presenter.getAllHistory();
     }
 
     @Override
@@ -50,6 +50,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
     @Override
     public void showHistory(List<History> history) {
+        this.allHistory.clear();
         this.allHistory.addAll(history);
         adapter.notifyDataSetChanged();
     }
