@@ -34,6 +34,8 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         History history = allHistories.get(position);
         holder.ratio.setText(history.getRatio());
         holder.date.setText(history.getDate().toString());
+        WordListAdapter wordAdapter = new WordListAdapter(history.getIncorrectWords());
+        holder.wordRecyclerView.setAdapter(wordAdapter);
     }
 
     @Override
@@ -41,16 +43,18 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         return allHistories.size();
     }
 
-    public class HistoryViewHolder extends RecyclerView.ViewHolder {
+    class HistoryViewHolder extends RecyclerView.ViewHolder {
 
         final TextView ratio;
         final TextView date;
-
+        final RecyclerView wordRecyclerView;
 
         public HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
             ratio = itemView.findViewById(R.id.ratioTextView);
             date = itemView.findViewById(R.id.dateTextView);
+
+            wordRecyclerView = itemView.findViewById(R.id.wrongWordsRecyclerView);
         }
     }
 }

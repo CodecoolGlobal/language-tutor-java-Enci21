@@ -15,6 +15,6 @@ public interface HistoryContract {
 
     interface Presenter extends BasePresenter{
 
-        void getAllHistory();
+        //void getAllHistory();
     }
 }

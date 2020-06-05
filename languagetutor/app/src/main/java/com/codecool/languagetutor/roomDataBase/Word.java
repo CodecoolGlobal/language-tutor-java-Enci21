@@ -22,7 +22,6 @@ public class Word implements Parcelable {
     @NonNull
     String translation;
 
-
     public Word(Parcel p) {
         this.id = p.readLong();
         this.enWord = p.readString();

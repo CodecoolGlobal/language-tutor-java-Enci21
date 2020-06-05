@@ -10,17 +10,17 @@ import com.codecool.languagetutor.roomDataBase.WordRepository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class TrainingPresenter implements TrainingContract.Presenter {
 
     private TrainingContract.View view;
     private WordRepository repository;
+    List<Word> incorrectWords;
 
-    public TrainingPresenter(TrainingContract.View view, Application application) {
+    public TrainingPresenter(TrainingContract.View view, Application application, List<Word> words) {
         this.view = view;
         this.repository = new WordRepository(application);
+        this.incorrectWords = words;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class TrainingPresenter implements TrainingContract.Presenter {
     @Override
     public void save(History history) {
         repository.insertHistory(history);
-
+        repository.getListOfWords(incorrectWords);
     }
 
     @Override

@@ -3,10 +3,12 @@ package com.codecool.languagetutor.roomDataBase;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity(tableName = "history")
 @TypeConverters(DateConverter.class)
@@ -21,6 +23,16 @@ public class History {
 
     private String ratio;
 
+    @Ignore
+    List<Word> incorrectWords;
+
+    public List<Word> getIncorrectWords() {
+        return incorrectWords;
+    }
+
+    public void setIncorrectWords(List<Word> incorrectWords) {
+        this.incorrectWords = incorrectWords;
+    }
 
     public History(Date date, String ratio) {
         this.date = date;

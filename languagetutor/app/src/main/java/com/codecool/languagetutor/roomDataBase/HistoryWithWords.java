@@ -1,10 +1,6 @@
 package com.codecool.languagetutor.roomDataBase;
 
-import androidx.annotation.NonNull;
-import androidx.room.ColumnInfo;
 import androidx.room.Embedded;
-import androidx.room.Junction;
-import androidx.room.PrimaryKey;
 import androidx.room.Relation;
 import androidx.room.TypeConverters;
 
@@ -13,27 +9,18 @@ import java.util.List;
 @TypeConverters(DateConverter.class)
 class HistoryWithWords {
 
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "id")
-    private Long id;
-
     @Embedded
     History history;
 
     @Relation(
             parentColumn = "historyId",
             entityColumn = "wordId",
-            associateBy = @Junction(HistoryWordCrossRef.class))
-    List<Word> incorrectWordsId;
+            entity = Word.class)
+    List<Word> incorrectWords;
 
-    @NonNull
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(@NonNull Long id) {
-        this.id = id;
+    public HistoryWithWords(History history, List<Word> incorrectWords) {
+        this.history = history;
+        this.incorrectWords = incorrectWords;
     }
 
     public History getHistory() {
@@ -45,11 +32,11 @@ class HistoryWithWords {
     }
 
 
-    public List<Word> getIncorrectWordsId() {
-        return incorrectWordsId;
+    public List<Word> getIncorrectWords() {
+        return incorrectWords;
     }
 
-    public void setIncorrectWordsId(List<Word> incorrectWordsId) {
-        this.incorrectWordsId = incorrectWordsId;
+    public void setIncorrectWords(List<Word> incorrectWords) {
+        this.incorrectWords = incorrectWords;
     }
 }

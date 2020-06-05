@@ -2,6 +2,7 @@ package com.codecool.languagetutor.training;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -30,6 +31,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 
     private TrainingContract.Presenter presenter;
     private FragmentCollectionAdapter fragmentCollectionAdapter;
+    public static final String EXTRA_LIST = "com.codecool.languagetutor.listW";
 
     @BindView(R.id.spinner)
     Spinner spinner;
@@ -47,13 +49,14 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 
     List<Word> incorrectWords = new ArrayList<>();
     int counter = 0;
+    int numberOfWords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
-        presenter = new TrainingPresenter(this, getApplication());
+        presenter = new TrainingPresenter(this, getApplication(), incorrectWords);
         presenter.onAttach();
         ButterKnife.bind(this);
 
@@ -64,7 +67,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         spinnerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
+                numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
                 Toast.makeText(v.getContext(), "You will get " + spinner.getSelectedItem().toString() + " questions", Toast.LENGTH_SHORT).show();
                 presenter.getWords(numberOfWords);
                 progressBar.setMax(numberOfWords);
@@ -91,9 +94,6 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 
     }
 
-//    public void goToNextPage(){
-//        viewPager.setCurrentItem(viewPager.getCurrentItem() +1);
-//    }
 
     @Override
     public void onResult(boolean isCorrect, Word word) {
@@ -110,9 +110,11 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 
     @Override
     public void onClose() {
+        String ratio = Integer.toString(numberOfWords) + " / " + Integer.toString(numberOfWords - incorrectWords.size());
         Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
         Date c = Calendar.getInstance().getTime();
-        History history = new History(c, "loasz");
+        History history = new History(c, ratio);
+        intent.putExtra(EXTRA_LIST, (Parcelable) incorrectWords);
         presenter.save(history);
         startActivity(intent);
     }

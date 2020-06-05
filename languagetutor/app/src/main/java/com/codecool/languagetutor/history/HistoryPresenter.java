@@ -16,6 +16,7 @@ public class HistoryPresenter implements HistoryContract.Presenter {
     public HistoryPresenter(HistoryContract.View view, Application app) {
         this.repository = new WordRepository(app);
         this.view = view;
+        new GetAllHistoryTask().execute();
     }
 
     @Override
@@ -28,10 +29,10 @@ public class HistoryPresenter implements HistoryContract.Presenter {
         this.view = null;
     }
 
-    @Override
+    /*@Override
     public void getAllHistory() {
         new GetAllHistoryTask().execute();
-    }
+    }*/
 
     class GetAllHistoryTask extends AsyncTask<Void, Void, List<History>> {
 
