@@ -2,7 +2,6 @@ package com.codecool.languagetutor.training;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -19,7 +18,6 @@ import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.roomDataBase.History;
 import com.codecool.languagetutor.roomDataBase.Word;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +44,8 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
 
-    List<Word> incorrectWords = new ArrayList<>();
+    String incorrectWords = "";
+    int incorrectWordsAmount = 0;
     int counter = 0;
     int numberOfWords;
 
@@ -55,7 +54,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
-        presenter = new TrainingPresenter(this, getApplication(), incorrectWords);
+        presenter = new TrainingPresenter(this, getApplication());
         presenter.onAttach();
         ButterKnife.bind(this);
 
@@ -93,12 +92,12 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 
     }
 
-
     @Override
     public void onResult(boolean isCorrect, Word word) {
         if (!isCorrect) {
             counter++;
-            incorrectWords.add(word);
+            incorrectWordsAmount++;
+            incorrectWords += word.getEnWord() + " " + word.getTranslation() + "\n\n";
             progressBar.setProgress(counter);
         } else {
             counter++;
@@ -109,10 +108,10 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 
     @Override
     public void onClose() {
-        String ratio = Integer.toString(numberOfWords) + " / " + Integer.toString(numberOfWords - incorrectWords.size());
+        String ratio = Integer.toString(numberOfWords) + " / " + Integer.toString(numberOfWords - incorrectWordsAmount);
         Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
-        Date c = Calendar.getInstance().getTime();
-        History history = new History(c, ratio);
+        Date date = Calendar.getInstance().getTime();
+        History history = new History(date, ratio, incorrectWords);
         presenter.save(history);
         startActivity(intent);
     }

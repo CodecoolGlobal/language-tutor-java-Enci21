@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.roomDataBase.History;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
 
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.HistoryViewHolder> {
@@ -34,8 +36,8 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         History history = allHistories.get(position);
         holder.ratio.setText(history.getRatio());
         holder.date.setText(history.getDate().toString());
-        WordListAdapter wordAdapter = new WordListAdapter(history.getIncorrectWords());
-        holder.wordRecyclerView.setAdapter(wordAdapter);
+        holder.incorrectWords.setText(history.getIncorrectWords().toString());
+
     }
 
     @Override
@@ -47,14 +49,13 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
         final TextView ratio;
         final TextView date;
-        final RecyclerView wordRecyclerView;
+        final TextView incorrectWords;
 
         public HistoryViewHolder(@NonNull View itemView) {
             super(itemView);
             ratio = itemView.findViewById(R.id.ratioTextView);
             date = itemView.findViewById(R.id.dateTextView);
-
-            wordRecyclerView = itemView.findViewById(R.id.wrongWordsRecyclerView);
+            incorrectWords = itemView.findViewById(R.id.incorrect_words);
         }
     }
 }

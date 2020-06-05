@@ -15,12 +15,11 @@ public class TrainingPresenter implements TrainingContract.Presenter {
 
     private TrainingContract.View view;
     private WordRepository repository;
-    List<Word> incorrectWords;
 
-    public TrainingPresenter(TrainingContract.View view, Application application, List<Word> words) {
+
+    public TrainingPresenter(TrainingContract.View view, Application application) {
         this.view = view;
         this.repository = new WordRepository(application);
-        this.incorrectWords = words;
     }
 
     @Override
@@ -37,7 +36,6 @@ public class TrainingPresenter implements TrainingContract.Presenter {
     @Override
     public void save(History history) {
         repository.insertHistory(history);
-        repository.getListOfWords(incorrectWords);
     }
 
     @Override

@@ -7,7 +7,6 @@ import java.util.List;
 public class WordRepository {
 
     private WordDao dao;
-    private List<Word> incorrectWords;
 
     public WordRepository(Application application) {
         WordDatabase database = WordDatabase.getDatabase(application);
@@ -31,11 +30,8 @@ public class WordRepository {
     }
 
     public List<History> getAllHistory() {
-        return dao.getAllHistories();
+        return dao.getAllHistory();
     }
 
-    public void getListOfWords(List<Word> words) {
-        incorrectWords = words;
-    }
 }
 
