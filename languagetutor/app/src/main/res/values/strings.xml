@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Language Tutor</string>
+    <string name="add_word_btn_label">Add Word</string>
+    <string name="train_btn_label">Train</string>
+    <string name="history_btn_label">History</string>
+    <string name="save_btn_label">Save</string>
+    <string name="spinner_btn_label">Let\'s go!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="check_btn_label">Check</string>
+    <string name="enter_the_translation_here">Enter the translation here</string>
+    <string name="enter_the_word">Enter the word</string>
+    <string name="enter_the_translation">Enter the translation</string>
+    <string name="how_many_questions_do_you_want">How many questions do you want?</string>
+    <string name="well_done">WELL DONE!</string>
+    <string name="go_back_to_menu">Go back to menu</string>
 </resources>
