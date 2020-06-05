@@ -10,15 +10,18 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.roomDataBase.History;
+import com.codecool.languagetutor.roomDataBase.HistoryWithWords;
+import com.codecool.languagetutor.roomDataBase.HistoryWordCrossRef;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.HistoryViewHolder> {
 
-    List<History> allHistories;
+    List<HistoryWithWords> allHistories;
 
 
-    public HistoryListAdapter(List<History> allHistories) {
+    public HistoryListAdapter(List<HistoryWithWords> allHistories) {
         this.allHistories = allHistories;
     }
 
@@ -31,9 +34,10 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
-        History history = allHistories.get(position);
-        holder.ratio.setText(history.getRatio());
-        holder.date.setText(history.getDate().toString());
+        HistoryWithWords history = allHistories.get(position);
+        System.out.println("array++++++++++++++++" + Arrays.toString( history.getIncorrectWordsId().toArray()));
+        holder.ratio.setText(history.getIncorrectWordsId().toString());
+        holder.date.setText(history.getHistory().getDate().toString());
     }
 
     @Override

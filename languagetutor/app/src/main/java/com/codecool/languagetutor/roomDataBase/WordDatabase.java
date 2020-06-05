@@ -22,7 +22,7 @@ public abstract class WordDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (Database.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), WordDatabase.class, "word_and_history_db")
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), WordDatabase.class, "word_n_hist_db")
                             .build();
                 }
             }

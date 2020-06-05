@@ -19,8 +19,12 @@ public interface WordDao {
 
     @Transaction
     @Query("SELECT * FROM history")
-    List<History> getAllHistory();
+    List<HistoryWithWords> getAllHistory();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insertHistory(History history);
+    long insertHistory(History history);
+
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertHWCrosRef(HistoryWordCrossRef historyWordCrossRef);
 }

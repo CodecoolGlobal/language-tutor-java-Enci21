@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import com.codecool.languagetutor.roomDataBase.History;
+import com.codecool.languagetutor.roomDataBase.HistoryWithWords;
 import com.codecool.languagetutor.roomDataBase.WordRepository;
 
 import java.util.List;
@@ -33,15 +34,15 @@ public class HistoryPresenter implements HistoryContract.Presenter {
         new GetAllHistoryTask().execute();
     }
 
-    class GetAllHistoryTask extends AsyncTask<Void, Void, List<History>> {
+    class GetAllHistoryTask extends AsyncTask<Void, Void, List<HistoryWithWords>> {
 
         @Override
-        protected List<History> doInBackground(Void... voids) {
+        protected List<HistoryWithWords> doInBackground(Void... voids) {
             return repository.getAllHistory();
         }
 
         @Override
-        protected void onPostExecute(List<History> histories) {
+        protected void onPostExecute(List<HistoryWithWords> histories) {
             view.showHistory(histories);
         }
     }

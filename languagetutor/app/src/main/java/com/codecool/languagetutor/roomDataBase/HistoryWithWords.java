@@ -10,13 +10,7 @@ import androidx.room.TypeConverters;
 
 import java.util.List;
 
-@TypeConverters(DateConverter.class)
-class HistoryWithWords {
-
-    @PrimaryKey(autoGenerate = true)
-    @NonNull
-    @ColumnInfo(name = "id")
-    private Long id;
+public class HistoryWithWords {
 
     @Embedded
     History history;
@@ -27,14 +21,11 @@ class HistoryWithWords {
             associateBy = @Junction(HistoryWordCrossRef.class))
     List<Word> incorrectWordsId;
 
-    @NonNull
-    public Long getId() {
-        return id;
+    public HistoryWithWords(History history, List<Word> incorrectWordsId) {
+        this.history = history;
+        this.incorrectWordsId = incorrectWordsId;
     }
 
-    public void setId(@NonNull Long id) {
-        this.id = id;
-    }
 
     public History getHistory() {
         return history;

@@ -4,14 +4,14 @@ import android.app.Application;
 import android.os.AsyncTask;
 
 import com.codecool.languagetutor.roomDataBase.History;
+import com.codecool.languagetutor.roomDataBase.HistoryWithWords;
 import com.codecool.languagetutor.roomDataBase.Word;
 import com.codecool.languagetutor.roomDataBase.WordRepository;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.ThreadLocalRandom;
+
 
 public class TrainingPresenter implements TrainingContract.Presenter {
 
@@ -35,9 +35,12 @@ public class TrainingPresenter implements TrainingContract.Presenter {
 
 
     @Override
-    public void save(History history) {
-        repository.insertHistory(history);
-
+    public void save(History history, List<Word> words) {
+//        repository.insertHistory(history);
+        long id = repository.insertHistory(history);
+        System.out.println("==========================================="+id);
+        history.setId(id);
+        repository.insertHistoryWithWordsCrossRef(history, words);
     }
 
     @Override

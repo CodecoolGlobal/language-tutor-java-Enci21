@@ -15,7 +15,7 @@ public class History {
     @PrimaryKey(autoGenerate = true)
     @NonNull
     @ColumnInfo(name = "historyId")
-    private Long id;
+    Long id;
 
     private Date date;
 

@@ -11,6 +11,11 @@ public class HistoryWordCrossRef {
     @NonNull
     private Long historyId;
 
+    public HistoryWordCrossRef(@NonNull Long wordId, @NonNull Long historyId) {
+        this.wordId = wordId;
+        this.historyId = historyId;
+    }
+
     public Long getWordId() {
         return wordId;
     }

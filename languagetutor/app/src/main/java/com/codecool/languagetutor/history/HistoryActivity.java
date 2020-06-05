@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.roomDataBase.History;
+import com.codecool.languagetutor.roomDataBase.HistoryWithWords;
+import com.codecool.languagetutor.roomDataBase.HistoryWordCrossRef;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +22,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
 
     private HistoryContract.Presenter presenter;
-    private List<History> allHistory = new ArrayList<>();
+    private List<HistoryWithWords> allHistory = new ArrayList<>();
     HistoryListAdapter adapter;
 
     @BindView(R.id.historyRecyclerView)
@@ -45,7 +47,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
     }
 
     @Override
-    public void showHistory(List<History> history) {
+    public void showHistory(List<HistoryWithWords> history) {
         this.allHistory.addAll(history);
         adapter.notifyDataSetChanged();
     }

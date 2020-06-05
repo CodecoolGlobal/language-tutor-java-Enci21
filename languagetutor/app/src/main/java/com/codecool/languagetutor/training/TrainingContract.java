@@ -13,7 +13,7 @@ public interface TrainingContract {
         void showFragments(List<Word> words);
     }
     interface Presenter extends BasePresenter{
-        void save(History h);
+        void save(History h, List<Word> incorrectWords);
 
         void getWords(int rounds);
     }

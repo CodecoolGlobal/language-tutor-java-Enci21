@@ -113,7 +113,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
         Date c = Calendar.getInstance().getTime();
         History history = new History(c, "loasz");
-        presenter.save(history);
+        presenter.save(history, incorrectWords);
         startActivity(intent);
     }
 }
