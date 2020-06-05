@@ -56,4 +56,10 @@ public class AddWordActivity extends AppCompatActivity implements AddWordContrac
         englishWord.setText("");
         translation.setText("");
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDetach();
+    }
 }

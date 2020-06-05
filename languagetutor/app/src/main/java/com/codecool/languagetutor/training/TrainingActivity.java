@@ -31,7 +31,6 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 
     private TrainingContract.Presenter presenter;
     private FragmentCollectionAdapter fragmentCollectionAdapter;
-    public static final String EXTRA_LIST = "com.codecool.languagetutor.listW";
 
     @BindView(R.id.spinner)
     Spinner spinner;
@@ -114,8 +113,13 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
         Date c = Calendar.getInstance().getTime();
         History history = new History(c, ratio);
-        intent.putExtra(EXTRA_LIST, (Parcelable) incorrectWords);
         presenter.save(history);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDetach();
     }
 }

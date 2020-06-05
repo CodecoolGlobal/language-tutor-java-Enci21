@@ -29,10 +29,10 @@ public class HistoryPresenter implements HistoryContract.Presenter {
         this.view = null;
     }
 
-    /*@Override
+    @Override
     public void getAllHistory() {
         new GetAllHistoryTask().execute();
-    }*/
+    }
 
     class GetAllHistoryTask extends AsyncTask<Void, Void, List<History>> {
 

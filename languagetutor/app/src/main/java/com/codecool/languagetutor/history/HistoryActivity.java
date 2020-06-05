@@ -1,16 +1,16 @@
 package com.codecool.languagetutor.history;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.codecool.languagetutor.MainActivity;
+
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.roomDataBase.History;
-import com.codecool.languagetutor.roomDataBase.Word;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +29,6 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
     @BindView(R.id.historyRecyclerView)
     RecyclerView historyRecyclerView;
 
-    List<Word> incorrectW;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +36,8 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
         setContentView(R.layout.activity_history);
         ButterKnife.bind(this);
 
-        Intent intent = getIntent();
-        incorrectW = intent.getParcelableArrayListExtra(MainActivity.EXTRA_LIST_W);
         presenter = new HistoryPresenter(this, getApplication());
-        //presenter.getAllHistory();
+        presenter.getAllHistory();
         adapter = new HistoryListAdapter(allHistory);
         historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         historyRecyclerView.setAdapter(adapter);
@@ -55,5 +52,11 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
     public void showHistory(List<History> history) {
         this.allHistory.addAll(history);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.onDetach();
     }
 }

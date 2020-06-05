@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:textSize="30sp"
+            android:textSize="@dimen/correct_answer_txt_size"
             android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -25,7 +25,7 @@
         <TextView
             android:id="@+id/english_word"
             style="@style/englis_word_training_text_view"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/train_englishword_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/correct_answer" />
@@ -36,7 +36,8 @@
             android:hint="@string/enter_the_translation_here"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/english_word" />
+            app:layout_constraintTop_toBottomOf="@+id/english_word"
+            android:autofillHints="" />
 
         <Button
             android:id="@+id/check_button"
