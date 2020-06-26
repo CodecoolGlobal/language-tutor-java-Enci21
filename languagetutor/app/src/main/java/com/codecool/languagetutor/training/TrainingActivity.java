@@ -89,7 +89,11 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         fragmentCollectionAdapter.setRounds(words.size());
         fragmentCollectionAdapter.setWords(words);
         viewPager.setAdapter(fragmentCollectionAdapter);
+    }
 
+    @Override
+    public void showEmptyDatabaseMessage() {
+        Toast.makeText(this, R.string.empty_db_msg, Toast.LENGTH_SHORT).show();
     }
 
     @Override
