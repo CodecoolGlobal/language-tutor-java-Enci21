@@ -56,16 +56,20 @@ public class TrainingPresenter implements TrainingContract.Presenter {
         @Override
         protected void onPostExecute(List<Word> words) {
             super.onPostExecute(words);
-            List<Integer> list = new ArrayList<>();
-            for (int i = 0; i < words.size(); i++) {
-                list.add(i);
+            if (words.size() == 0){
+                view.showEmptyDatabaseMessage();
+            } else {
+                List<Integer> list = new ArrayList<>();
+                for (int i = 0; i < words.size(); i++) {
+                    list.add(i);
+                }
+                Collections.shuffle(list);
+                List<Word> trainingWords = new ArrayList();
+                for (int i = 0; i < rounds; i++) {
+                    trainingWords.add(words.get(list.get(i)));
+                }
+                view.showFragments(trainingWords);
             }
-            Collections.shuffle(list);
-            List<Word> trainingWords = new ArrayList();
-            for (int i = 0; i < rounds; i++) {
-                trainingWords.add(words.get(list.get(i)));
-            }
-            view.showFragments(trainingWords);
         }
     }
 }
