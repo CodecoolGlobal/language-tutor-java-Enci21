@@ -73,6 +73,7 @@ public class TrainingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 checkAnswer();
+                checkButton.setEnabled(false);
             }
         });
         return view;

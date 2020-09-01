@@ -51,8 +51,9 @@ public class HistoryPresenter implements HistoryContract.Presenter {
                     public void onSuccess(List<History> histories) {
                         if (!histories.isEmpty()){
                             view.showHistory(histories);
+                        } else {
+                            view.showEmptyHistory();
                         }
-                        view.showEmptyHistory();
                     }
 
                     @Override
