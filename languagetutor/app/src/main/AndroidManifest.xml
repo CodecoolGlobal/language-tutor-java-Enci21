@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".training.TrainingActivity"></activity>
+        <activity android:name=".reminder.ReminderActivity"></activity>
+        <activity android:name=".training.TrainingActivity" />
         <activity android:name=".addword.AddWordActivity" />
         <activity android:name=".history.HistoryActivity" />
         <activity android:name=".MainActivity">
@@ -19,6 +20,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".reminder.AlertReceiver" />
     </application>
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
 </manifest>
