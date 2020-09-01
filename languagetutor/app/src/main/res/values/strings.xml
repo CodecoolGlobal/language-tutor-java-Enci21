@@ -21,4 +21,6 @@
     <string name="pick_time_btn_text">Pick Time</string>
     <string name="save_btn_text">Save</string>
     <string name="empty_history_msg">You do not have trainging history yet!</string>
+    <string name="note_title">It\'s learning time!</string>
+    <string name="note_text">Practice makes perfect!</string>
 </resources>

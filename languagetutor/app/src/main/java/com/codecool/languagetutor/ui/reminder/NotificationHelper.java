@@ -50,8 +50,8 @@ public class NotificationHelper extends ContextWrapper {
         notificationIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 1, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         return new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                .setContentTitle("It's learning time!")
-                .setContentText("Practice makes perfect!")
+                .setContentTitle(getString(R.string.note_title))
+                .setContentText(getString(R.string.note_text))
                 .setSmallIcon(R.drawable.ic_notification_icon)
                 .setAutoCancel(true)
                 .setContentIntent(contentIntent);
