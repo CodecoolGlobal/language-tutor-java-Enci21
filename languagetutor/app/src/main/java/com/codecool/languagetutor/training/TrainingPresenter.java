@@ -56,7 +56,7 @@ public class TrainingPresenter implements TrainingContract.Presenter {
         @Override
         protected void onPostExecute(List<Word> words) {
             super.onPostExecute(words);
-            if (words.size() == 0){
+            if (words.size() == 0) {
                 view.showEmptyDatabaseMessage();
             } else {
                 List<Integer> list = new ArrayList<>();

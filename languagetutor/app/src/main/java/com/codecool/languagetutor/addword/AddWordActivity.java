@@ -14,7 +14,7 @@ import com.codecool.languagetutor.roomDataBase.Word;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class AddWordActivity extends AppCompatActivity implements AddWordContract.View{
+public class AddWordActivity extends AppCompatActivity implements AddWordContract.View {
 
 
     private AddWordContract.Presenter presenter;
