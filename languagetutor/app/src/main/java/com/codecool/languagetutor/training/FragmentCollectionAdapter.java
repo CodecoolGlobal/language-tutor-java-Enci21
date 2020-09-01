@@ -20,7 +20,7 @@ public class FragmentCollectionAdapter extends FragmentStatePagerAdapter {
         super(fm);
     }
 
-    public void setRounds(int rounds){
+    public void setRounds(int rounds) {
         this.rounds = rounds;
     }
 

@@ -11,9 +11,11 @@ public interface TrainingContract {
 
     interface View extends BaseView<Presenter> {
         void showFragments(List<Word> words);
+
         void showEmptyDatabaseMessage();
     }
-    interface Presenter extends BasePresenter{
+
+    interface Presenter extends BasePresenter {
         void save(History h);
 
         void getWords(int rounds);

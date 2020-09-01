@@ -8,12 +8,12 @@ import java.util.List;
 
 public interface HistoryContract {
 
-    interface View extends BaseView<Presenter>{
+    interface View extends BaseView<Presenter> {
 
         void showHistory(List<History> history);
     }
 
-    interface Presenter extends BasePresenter{
+    interface Presenter extends BasePresenter {
 
         void getAllHistory();
     }

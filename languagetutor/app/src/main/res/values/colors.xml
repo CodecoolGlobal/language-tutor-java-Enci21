@@ -11,5 +11,6 @@
     <color name="trainingButton">#E9DB62</color>
     <color name="historyButton">#61E4AF</color>
     <color name="addMainButton">#CD76ED</color>
-
+    <color name="saveButton">#61E4AF</color>
+    <color name="timePickerButton">#E9DB62</color>
 </resources>

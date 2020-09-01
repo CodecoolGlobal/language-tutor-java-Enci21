@@ -16,7 +16,6 @@ public class AddWordPresenter implements AddWordContract.Presenter {
     }
 
 
-
     @Override
     public void onAttach() {
         view.setPresenter(this);

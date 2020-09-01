@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/app_margin"
+    android:background="@color/background"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:text="@string/reminder_title"
+        style="@style/reminder_title" />
+
+    <TextView
+        android:id="@+id/textView_time"
+        android:text="@string/time_text"
+        style="@style/time_text" />
+
+    <Button
+        android:id="@+id/open_time"
+        android:text="@string/pick_time_btn_text"
+        style="@style/time_picker_btn" />
+
+    <Button
+        android:id="@+id/save_button"
+        android:text="@string/save_btn_text"
+        style="@style/save_button" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>
