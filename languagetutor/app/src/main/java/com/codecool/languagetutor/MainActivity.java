@@ -2,13 +2,18 @@ package com.codecool.languagetutor;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.codecool.languagetutor.addword.AddWordActivity;
 import com.codecool.languagetutor.history.HistoryActivity;
+import com.codecool.languagetutor.reminder.ReminderActivity;
 import com.codecool.languagetutor.training.TrainingActivity;
 
 
@@ -56,4 +61,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.reminder:
+                startActivity(new Intent(this, ReminderActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 }

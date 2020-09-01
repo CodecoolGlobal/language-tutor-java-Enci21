@@ -15,4 +15,9 @@
     <string name="well_done">WELL DONE!</string>
     <string name="go_back_to_menu">Go back to menu</string>
     <string name="empty_db_msg">You do not have enough words in memory yet!</string>
+    <string name="options_menu_reminder">Reminder</string>
+    <string name="reminder_title">Set Practice Reminder</string>
+    <string name="time_text">00:00</string>
+    <string name="pick_time_btn_text">Pick Time</string>
+    <string name="save_btn_text">Save</string>
 </resources>
