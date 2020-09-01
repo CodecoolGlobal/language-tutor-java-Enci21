@@ -5,6 +5,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Transaction;
+import io.reactivex.Single;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public interface WordDao {
     void addWord(Word word);
 
     @Query("SELECT * FROM words")
-    List<Word> getAllWords();
+    Single<List<Word>> getAllWords();
 
     @Transaction
     @Query("SELECT * FROM history")

@@ -4,6 +4,8 @@ import android.app.Application;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 public class WordRepository {
 
     private WordDao dao;
@@ -25,7 +27,7 @@ public class WordRepository {
         });
     }
 
-    public List<Word> getAll() {
+    public Single<List<Word>> getAll() {
         return dao.getAllWords();
     }
 

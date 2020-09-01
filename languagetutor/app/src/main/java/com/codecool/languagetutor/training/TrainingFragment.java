@@ -90,8 +90,6 @@ public class TrainingFragment extends Fragment {
                 }
             }, 2000);
 
-//            ezzel is lehet a callback helyett
-//            ((TrainingActivity) getActivity()).goToNextPage();
         } else {
             showIncorrect();
             new Handler().postDelayed(new Runnable() {
@@ -100,7 +98,6 @@ public class TrainingFragment extends Fragment {
                     callback.onResult(false, word);
                 }
             }, 2000);
-//        ((TrainingActivity) getActivity()).goToNextPage();
         }
     }
 
