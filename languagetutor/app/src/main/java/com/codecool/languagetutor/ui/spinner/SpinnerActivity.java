@@ -45,14 +45,6 @@ public class SpinnerActivity extends AppCompatActivity {
             public void onClick(View v) {
                 numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
                 Toast.makeText(v.getContext(), "You will get " + spinner.getSelectedItem().toString() + " questions", Toast.LENGTH_SHORT).show();
-
-//                progressBar.setMax(numberOfWords);
-//                progressBar.setProgress(counter);
-//                progressBar.setVisibility(View.VISIBLE);
-//                welcomeTraining.setVisibility(View.GONE);
-//                spinner.setVisibility(View.GONE);
-//                spinnerButton.setVisibility(View.GONE);
-
                 Intent intent = new Intent(getApplicationContext(), TrainingActivity.class);
                 intent.putExtra("numberOfWords", numberOfWords);
                 startActivity(intent);
