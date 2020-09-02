@@ -1,6 +1,5 @@
 package com.codecool.languagetutor.ui;
 
-public interface BaseView<P> {
+public interface BaseView<BasePresenter> {
 
-    void setPresenter(P presenter);
 }

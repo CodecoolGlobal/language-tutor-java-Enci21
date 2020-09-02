@@ -8,6 +8,8 @@ import com.codecool.languagetutor.source.WordRepository;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -19,15 +21,14 @@ public class HistoryPresenter implements HistoryContract.Presenter {
     private WordRepository repository;
     private static final String ERROR_TAG = "history_rxjava";
 
-    public HistoryPresenter(HistoryContract.View view, Application app) {
-        this.repository = new WordRepository(app);
-        this.view = view;
-        getAllHistory();
+    @Inject
+    public HistoryPresenter(WordRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public void onAttach() {
-        view.setPresenter(this);
+    public void onAttach(HistoryContract.View view) {
+        this.view = view;
     }
 
     @Override

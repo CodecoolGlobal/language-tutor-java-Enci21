@@ -8,16 +8,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.codecool.languagetutor.LangTutorApp;
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.model.Word;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AddWordActivity extends AppCompatActivity implements AddWordContract.View {
 
-
-    private AddWordContract.Presenter presenter;
+    @Inject
+    AddWordContract.Presenter presenter;
 
     @BindView(R.id.save_button)
     Button saveButton;
@@ -31,6 +34,9 @@ public class AddWordActivity extends AppCompatActivity implements AddWordContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_word);
 
+        ((LangTutorApp) getApplication()).getComponent().inject(this);
+        presenter.onAttach(this);
+
         ButterKnife.bind(this);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,13 +46,6 @@ public class AddWordActivity extends AppCompatActivity implements AddWordContrac
             }
         });
 
-        presenter = new AddWordPresenter(this, getApplication());
-        presenter.onAttach();
-    }
-
-    @Override
-    public void setPresenter(AddWordContract.Presenter presenter) {
-        this.presenter = presenter;
     }
 
 

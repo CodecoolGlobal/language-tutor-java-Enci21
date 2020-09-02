@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.codecool.languagetutor.LangTutorApp;
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.adapters.HistoryListAdapter;
 import com.codecool.languagetutor.model.History;
@@ -18,13 +19,17 @@ import com.codecool.languagetutor.model.History;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
 public class HistoryActivity extends AppCompatActivity implements HistoryContract.View {
 
-    private HistoryContract.Presenter presenter;
+    @Inject
+    HistoryContract.Presenter presenter;
+
     private List<History> allHistory = new ArrayList<>();
     HistoryListAdapter adapter;
 
@@ -39,16 +44,13 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
         setContentView(R.layout.activity_history);
         ButterKnife.bind(this);
 
-        presenter = new HistoryPresenter(this, getApplication());
+        ((LangTutorApp) getApplication()).getComponent().injectHistory(this);
+        presenter.onAttach(this);
+        presenter.getAllHistory();
+
         adapter = new HistoryListAdapter(allHistory);
         historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         historyRecyclerView.setAdapter(adapter);
-        presenter.getAllHistory();
-    }
-
-    @Override
-    public void setPresenter(HistoryContract.Presenter presenter) {
-        this.presenter = presenter;
     }
 
     @Override

@@ -17,6 +17,7 @@ public interface HistoryContract {
 
     interface Presenter extends BasePresenter {
 
+        void onAttach(HistoryContract.View view);
         void getAllHistory();
     }
 }

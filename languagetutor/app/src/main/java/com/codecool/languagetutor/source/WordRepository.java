@@ -2,6 +2,7 @@ package com.codecool.languagetutor.source;
 
 import android.app.Application;
 
+import com.codecool.languagetutor.LangTutorApp;
 import com.codecool.languagetutor.model.History;
 import com.codecool.languagetutor.model.Word;
 import com.codecool.languagetutor.source.remote.WordDao;
@@ -9,11 +10,16 @@ import com.codecool.languagetutor.source.remote.WordDatabase;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.Single;
 
 public class WordRepository {
 
     private WordDao dao;
+
+    @Inject
+    Application application;
 
     public WordRepository(Application application) {
         WordDatabase database = WordDatabase.getDatabase(application);

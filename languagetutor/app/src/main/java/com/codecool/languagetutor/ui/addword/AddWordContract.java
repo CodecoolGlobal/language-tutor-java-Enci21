@@ -11,6 +11,9 @@ public interface AddWordContract {
     }
 
     interface Presenter extends BasePresenter {
+
+        void onAttach(AddWordContract.View view);
+
         void insert(Word word);
 
     }

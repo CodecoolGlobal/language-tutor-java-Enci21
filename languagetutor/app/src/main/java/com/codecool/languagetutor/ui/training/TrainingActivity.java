@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import com.codecool.languagetutor.LangTutorApp;
 import com.codecool.languagetutor.adapters.FragmentCollectionAdapter;
 import com.codecool.languagetutor.ui.MainActivity;
 import com.codecool.languagetutor.R;
@@ -23,12 +24,16 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class TrainingActivity extends AppCompatActivity implements TrainingContract.View, TrainingFragment.OnResultListener, ResultFragment.ClosingInterface {
 
-    private TrainingContract.Presenter presenter;
+    @Inject
+    TrainingContract.Presenter presenter;
+
     private FragmentCollectionAdapter fragmentCollectionAdapter;
 
     @BindView(R.id.spinner)
@@ -55,8 +60,9 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
-        presenter = new TrainingPresenter(this, getApplication());
-        presenter.onAttach();
+        ((LangTutorApp) getApplication()).getComponent().inject(this);
+
+        presenter.onAttach(this);
         ButterKnife.bind(this);
 
         Integer[] options = {5, 10, 20};
@@ -77,11 +83,6 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
                 spinnerButton.setVisibility(View.GONE);
             }
         });
-    }
-
-    @Override
-    public void setPresenter(TrainingContract.Presenter presenter) {
-        this.presenter = presenter;
     }
 
     @Override

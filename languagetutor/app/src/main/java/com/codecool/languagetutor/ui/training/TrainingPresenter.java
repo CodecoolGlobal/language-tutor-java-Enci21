@@ -1,6 +1,5 @@
 package com.codecool.languagetutor.ui.training;
 
-import android.app.Application;
 import android.util.Log;
 
 import com.codecool.languagetutor.model.History;
@@ -11,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -20,17 +21,17 @@ public class TrainingPresenter implements TrainingContract.Presenter {
 
     private TrainingContract.View view;
     private WordRepository repository;
-    private static final String ERROR_TAG = "RXJAVA";
 
-
-    public TrainingPresenter(TrainingContract.View view, Application application) {
-        this.view = view;
-        this.repository = new WordRepository(application);
+    @Inject
+    public TrainingPresenter( WordRepository repository) {
+        this.repository = repository;
     }
 
+    private static final String ERROR_TAG = "RXJAVA";
+
     @Override
-    public void onAttach() {
-        view.setPresenter(this);
+    public void onAttach(TrainingContract.View view) {
+        this.view = view;
     }
 
     @Override
@@ -60,16 +61,20 @@ public class TrainingPresenter implements TrainingContract.Presenter {
                         if (words.size() == 0) {
                             view.showEmptyDatabaseMessage();
                         } else {
-                            List<Integer> list = new ArrayList<>();
-                            for (int i = 0; i < words.size(); i++) {
-                                list.add(i);
+                            if (words.size() < rounds){
+                                view.showEmptyDatabaseMessage();
+                            } else {
+                                List<Integer> list = new ArrayList<>();
+                                for (int i = 0; i < words.size(); i++) {
+                                    list.add(i);
+                                }
+                                Collections.shuffle(list);
+                                List<Word> trainingWords = new ArrayList();
+                                for (int i = 0; i < rounds; i++) {
+                                    trainingWords.add(words.get(list.get(i)));
+                                }
+                                view.showFragments(trainingWords);
                             }
-                            Collections.shuffle(list);
-                            List<Word> trainingWords = new ArrayList();
-                            for (int i = 0; i < rounds; i++) {
-                                trainingWords.add(words.get(list.get(i)));
-                            }
-                            view.showFragments(trainingWords);
                         }
                     }
 

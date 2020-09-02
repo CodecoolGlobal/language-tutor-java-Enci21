@@ -1,23 +1,23 @@
 package com.codecool.languagetutor.ui.addword;
 
-import android.app.Application;
-
 import com.codecool.languagetutor.model.Word;
 import com.codecool.languagetutor.source.WordRepository;
+
+import javax.inject.Inject;
 
 public class AddWordPresenter implements AddWordContract.Presenter {
 
     private AddWordContract.View view;
     private WordRepository repository;
 
-    public AddWordPresenter(AddWordContract.View view, Application application) {
-        this.view = view;
-        this.repository = new WordRepository(application);
+    @Inject
+    public AddWordPresenter( WordRepository repository) {
+        this.repository = repository;
     }
 
     @Override
-    public void onAttach() {
-        view.setPresenter(this);
+    public void onAttach(AddWordContract.View view) {
+        this.view= view;
     }
 
     @Override
