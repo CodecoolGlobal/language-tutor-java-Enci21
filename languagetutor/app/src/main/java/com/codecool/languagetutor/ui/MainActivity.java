@@ -15,8 +15,7 @@ import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.ui.addword.AddWordActivity;
 import com.codecool.languagetutor.ui.history.HistoryActivity;
 import com.codecool.languagetutor.ui.reminder.ReminderActivity;
-import com.codecool.languagetutor.ui.training.SpinnerActivity;
-import com.codecool.languagetutor.ui.training.TrainingActivity;
+import com.codecool.languagetutor.ui.spinner.SpinnerActivity;
 
 
 import butterknife.BindView;
