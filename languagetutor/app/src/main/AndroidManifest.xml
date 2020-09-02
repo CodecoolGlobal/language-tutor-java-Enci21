@@ -3,17 +3,18 @@
     package="com.codecool.languagetutor">
 
     <application
+        android:name=".LangTutorApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".reminder.ReminderActivity"></activity>
-        <activity android:name=".training.TrainingActivity" />
-        <activity android:name=".addword.AddWordActivity" />
-        <activity android:name=".history.HistoryActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.reminder.ReminderActivity"></activity>
+        <activity android:name=".ui.training.TrainingActivity" />
+        <activity android:name=".ui.addword.AddWordActivity" />
+        <activity android:name=".ui.history.HistoryActivity" />
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +22,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".reminder.AlertReceiver" />
+        <receiver android:name=".ui.reminder.AlertReceiver" />
     </application>
 
     <uses-permission android:name="android.permission.WAKE_LOCK" />
