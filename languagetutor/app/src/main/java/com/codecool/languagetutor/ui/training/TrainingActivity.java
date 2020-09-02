@@ -10,6 +10,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -35,14 +36,14 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     TrainingContract.Presenter presenter;
 
     private FragmentCollectionAdapter fragmentCollectionAdapter;
-
-    @BindView(R.id.spinner)
-    Spinner spinner;
-    @BindView(R.id.spinner_button)
-    Button spinnerButton;
-
-    @BindView(R.id.howManyText)
-    TextView welcomeTraining;
+//
+//    @BindView(R.id.spinner)
+//    Spinner spinner;
+//    @BindView(R.id.spinner_button)
+//    Button spinnerButton;
+//
+//    @BindView(R.id.howManyText)
+//    TextView welcomeTraining;
 
     @BindView(R.id.pager)
     ViewPager viewPager;
@@ -65,24 +66,36 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         presenter.onAttach(this);
         ButterKnife.bind(this);
 
-        Integer[] options = {5, 10, 20};
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinnerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
-                Toast.makeText(v.getContext(), "You will get " + spinner.getSelectedItem().toString() + " questions", Toast.LENGTH_SHORT).show();
-                presenter.getWords(numberOfWords);
-                progressBar.setMax(numberOfWords);
-                progressBar.setProgress(counter);
-                progressBar.setVisibility(View.VISIBLE);
-                welcomeTraining.setVisibility(View.GONE);
-                spinner.setVisibility(View.GONE);
-                spinnerButton.setVisibility(View.GONE);
-            }
-        });
+        if (savedInstanceState != null){
+            incorrectWords = savedInstanceState.getString("incorrectWords");
+            incorrectWordsAmount = savedInstanceState.getInt("incorrectWordsAmount");
+            counter = savedInstanceState.getInt("counter");
+        }
+
+        numberOfWords = getIntent().getIntExtra("numberOfWords", 5);
+        presenter.getWords(numberOfWords);
+        progressBar.setMax(numberOfWords);
+        progressBar.setProgress(counter);
+        progressBar.setVisibility(View.VISIBLE);
+
+//        Integer[] options = {5, 10, 20};
+//        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
+//        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner.setAdapter(adapter);
+//        spinnerButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
+//                Toast.makeText(v.getContext(), "You will get " + spinner.getSelectedItem().toString() + " questions", Toast.LENGTH_SHORT).show();
+//                presenter.getWords(numberOfWords);
+//                progressBar.setMax(numberOfWords);
+//                progressBar.setProgress(counter);
+//                progressBar.setVisibility(View.VISIBLE);
+//                welcomeTraining.setVisibility(View.GONE);
+//                spinner.setVisibility(View.GONE);
+//                spinnerButton.setVisibility(View.GONE);
+//            }
+//        });
     }
 
     @Override
@@ -126,5 +139,13 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     protected void onDestroy() {
         super.onDestroy();
         presenter.onDetach();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("incorrectWords", incorrectWords);
+        outState.putInt("incorrectWordsAmount",incorrectWordsAmount);
+        outState.putInt("counter", counter);
     }
 }

@@ -115,6 +115,4 @@ public class TrainingFragment extends Fragment {
         correctAnswerText.setTextColor(getResources().getColor(R.color.correctColor));
         view.setBackgroundColor(getResources().getColor(R.color.correctBackground));
     }
-
-
 }

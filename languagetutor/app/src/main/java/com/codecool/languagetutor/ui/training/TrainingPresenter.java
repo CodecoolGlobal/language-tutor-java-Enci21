@@ -58,12 +58,9 @@ public class TrainingPresenter implements TrainingContract.Presenter {
 
                     @Override
                     public void onSuccess(List<Word> words) {
-                        if (words.size() == 0) {
+                        if (words.size() == 0 || words.size() < rounds) {
                             view.showEmptyDatabaseMessage();
                         } else {
-                            if (words.size() < rounds){
-                                view.showEmptyDatabaseMessage();
-                            } else {
                                 List<Integer> list = new ArrayList<>();
                                 for (int i = 0; i < words.size(); i++) {
                                     list.add(i);
@@ -74,7 +71,6 @@ public class TrainingPresenter implements TrainingContract.Presenter {
                                     trainingWords.add(words.get(list.get(i)));
                                 }
                                 view.showFragments(trainingWords);
-                            }
                         }
                     }
 

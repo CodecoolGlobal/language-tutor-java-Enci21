@@ -5,7 +5,7 @@
     <dimen name="margin_16">16dp</dimen>
     <dimen name="margin_32">32dp</dimen>
     <dimen name="train_input_txt_size">18sp</dimen>
-    <dimen name="spinner_width">80dp</dimen>
+    <dimen name="spinner_width">100dp</dimen>
     <dimen name="spinner_margin_start">76dp</dimen>
     <dimen name="spinner_margin_left">76dp</dimen>
     <dimen name="spinner_margin_top">44dp</dimen>
