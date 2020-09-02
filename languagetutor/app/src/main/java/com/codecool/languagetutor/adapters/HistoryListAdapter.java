@@ -1,4 +1,4 @@
-package com.codecool.languagetutor.history;
+package com.codecool.languagetutor.adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.model.History;
-
-import com.codecool.languagetutor.roomDataBase.History;
 
 import java.util.List;
 
