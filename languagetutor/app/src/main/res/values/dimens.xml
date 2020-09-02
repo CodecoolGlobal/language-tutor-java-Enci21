@@ -13,4 +13,9 @@
     <dimen name="correct_answer_txt_size">30sp</dimen>
     <dimen name="train_englishword_margin_top">24dp</dimen>
     <dimen name="word_item_margin_top">183dp</dimen>
+    <dimen name="margin_8">8dp</dimen>
+    <dimen name="text_18">18sp</dimen>
+    <dimen name="text_20">20sp</dimen>
+    <dimen name="text_16">16sp</dimen>
+    <dimen name="margin_4">4dp</dimen>
 </resources>

@@ -1,4 +1,4 @@
-package com.codecool.languagetutor.adapters;
+package com.codecool.languagetutor.history;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.model.History;
+
+import com.codecool.languagetutor.roomDataBase.History;
 
 import java.util.List;
 
@@ -32,7 +34,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         History history = allHistories.get(position);
         holder.ratio.setText(history.getRatio());
-        holder.date.setText(history.getDate().toString());
+        holder.date.setText(history.getDate().toString().substring(0, 16));
         holder.incorrectWords.setText(history.getIncorrectWords());
     }
 

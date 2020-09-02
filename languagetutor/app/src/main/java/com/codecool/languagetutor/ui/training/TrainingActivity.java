@@ -78,6 +78,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
                 progressBar.setMax(numberOfWords);
                 progressBar.setProgress(counter);
                 progressBar.setVisibility(View.VISIBLE);
+                //progressBar.set
                 welcomeTraining.setVisibility(View.GONE);
                 spinner.setVisibility(View.GONE);
                 spinnerButton.setVisibility(View.GONE);
