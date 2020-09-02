@@ -31,6 +31,11 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     @Inject
     TrainingContract.Presenter presenter;
 
+    private static final String INCORRECTWORDS_TAG = "incorrectWords";
+    private static final String INCORRECTWORDSAMOUNT_TAG = "incorrectWordsAmount";
+    private static final String COUNTER_TAG = "counter";
+    private static final String NUMBEROFWORDS_TAG = "numberOfWords";
+
     private FragmentCollectionAdapter fragmentCollectionAdapter;
 
     @BindView(R.id.pager)
@@ -55,12 +60,12 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         ButterKnife.bind(this);
 
         if (savedInstanceState != null) {
-            incorrectWords = savedInstanceState.getString("incorrectWords");
-            incorrectWordsAmount = savedInstanceState.getInt("incorrectWordsAmount");
-            counter = savedInstanceState.getInt("counter");
+            incorrectWords = savedInstanceState.getString(INCORRECTWORDS_TAG);
+            incorrectWordsAmount = savedInstanceState.getInt(INCORRECTWORDSAMOUNT_TAG);
+            counter = savedInstanceState.getInt(COUNTER_TAG);
         }
 
-        numberOfWords = getIntent().getIntExtra("numberOfWords", 5);
+        numberOfWords = getIntent().getIntExtra(NUMBEROFWORDS_TAG, 5);
         presenter.getWords(numberOfWords);
         progressBar.setMax(numberOfWords);
         progressBar.setProgress(counter);
@@ -113,8 +118,8 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString("incorrectWords", incorrectWords);
-        outState.putInt("incorrectWordsAmount", incorrectWordsAmount);
-        outState.putInt("counter", counter);
+        outState.putString(INCORRECTWORDS_TAG, incorrectWords);
+        outState.putInt(INCORRECTWORDSAMOUNT_TAG, incorrectWordsAmount);
+        outState.putInt(COUNTER_TAG, counter);
     }
 }
