@@ -32,7 +32,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         History history = allHistories.get(position);
         holder.ratio.setText(history.getRatio());
-        holder.date.setText(history.getDate().toString());
+        holder.date.setText(history.getDate().toString().substring(0, 16));
         holder.incorrectWords.setText(history.getIncorrectWords());
     }
 
