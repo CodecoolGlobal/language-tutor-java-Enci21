@@ -7,38 +7,6 @@
     android:background="@color/background"
     tools:context=".ui.training.TrainingActivity">
 
-    <TextView
-        android:id="@+id/howManyText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/how_many_questions_do_you_want"
-        android:layout_marginTop="@dimen/margin_32"
-        android:layout_marginStart="@dimen/margin_32"
-        android:layout_marginLeft="@dimen/margin_32"
-        android:textStyle="bold"
-        android:textSize="@dimen/train_input_txt_size"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="@dimen/spinner_width"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spinner_margin_start"
-        android:layout_marginLeft="@dimen/spinner_margin_left"
-        android:layout_marginTop="@dimen/spinner_margin_top"
-        android:spinnerMode="dropdown"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/howManyText" />
-
-    <Button
-        android:id="@+id/spinner_button"
-        style="@style/button"
-        android:text="@string/spinner_btn_label"
-        app:layout_constraintStart_toEndOf="@id/spinner"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/howManyText" />
-
     <ProgressBar
         android:id="@+id/progressBar"
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -55,4 +23,5 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/progressBar" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

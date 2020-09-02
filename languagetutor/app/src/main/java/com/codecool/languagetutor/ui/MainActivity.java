@@ -15,7 +15,7 @@ import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.ui.addword.AddWordActivity;
 import com.codecool.languagetutor.ui.history.HistoryActivity;
 import com.codecool.languagetutor.ui.reminder.ReminderActivity;
-import com.codecool.languagetutor.ui.training.TrainingActivity;
+import com.codecool.languagetutor.ui.spinner.SpinnerActivity;
 
 
 import butterknife.BindView;
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         trainingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, TrainingActivity.class);
+                Intent intent = new Intent(MainActivity.this, SpinnerActivity.class);
                 startActivity(intent);
             }
         });

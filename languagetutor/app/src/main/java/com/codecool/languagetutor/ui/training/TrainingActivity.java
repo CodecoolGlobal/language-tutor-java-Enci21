@@ -3,13 +3,10 @@ package com.codecool.languagetutor.ui.training;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -34,15 +31,12 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     @Inject
     TrainingContract.Presenter presenter;
 
+    private static final String INCORRECTWORDS_TAG = "incorrectWords";
+    private static final String INCORRECTWORDSAMOUNT_TAG = "incorrectWordsAmount";
+    private static final String COUNTER_TAG = "counter";
+    private static final String NUMBEROFWORDS_TAG = "numberOfWords";
+
     private FragmentCollectionAdapter fragmentCollectionAdapter;
-
-    @BindView(R.id.spinner)
-    Spinner spinner;
-    @BindView(R.id.spinner_button)
-    Button spinnerButton;
-
-    @BindView(R.id.howManyText)
-    TextView welcomeTraining;
 
     @BindView(R.id.pager)
     ViewPager viewPager;
@@ -65,25 +59,17 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         presenter.onAttach(this);
         ButterKnife.bind(this);
 
-        Integer[] options = {5, 10, 20};
-        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinnerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
-                Toast.makeText(v.getContext(), "You will get " + spinner.getSelectedItem().toString() + " questions", Toast.LENGTH_SHORT).show();
-                presenter.getWords(numberOfWords);
-                progressBar.setMax(numberOfWords);
-                progressBar.setProgress(counter);
-                progressBar.setVisibility(View.VISIBLE);
-                //progressBar.set
-                welcomeTraining.setVisibility(View.GONE);
-                spinner.setVisibility(View.GONE);
-                spinnerButton.setVisibility(View.GONE);
-            }
-        });
+        if (savedInstanceState != null) {
+            incorrectWords = savedInstanceState.getString(INCORRECTWORDS_TAG);
+            incorrectWordsAmount = savedInstanceState.getInt(INCORRECTWORDSAMOUNT_TAG);
+            counter = savedInstanceState.getInt(COUNTER_TAG);
+        }
+
+        numberOfWords = getIntent().getIntExtra(NUMBEROFWORDS_TAG, 5);
+        presenter.getWords(numberOfWords);
+        progressBar.setMax(numberOfWords);
+        progressBar.setProgress(counter);
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -127,5 +113,13 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     protected void onDestroy() {
         super.onDestroy();
         presenter.onDetach();
+    }
+
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString(INCORRECTWORDS_TAG, incorrectWords);
+        outState.putInt(INCORRECTWORDSAMOUNT_TAG, incorrectWordsAmount);
+        outState.putInt(COUNTER_TAG, counter);
     }
 }
