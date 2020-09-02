@@ -13,11 +13,12 @@
     <string name="enter_the_translation">Enter the translation</string>
     <string name="how_many_questions_do_you_want">How many questions do you want?</string>
     <string name="well_done">WELL DONE!</string>
-    <string name="go_back_to_menu">Go back to menu</string>
+    <string name="go_back_to_menu">Main menu</string>
     <string name="empty_db_msg">You do not have enough words in memory yet!</string>
     <string name="options_menu_reminder">Reminder</string>
     <string name="reminder_title">Set Practice Reminder</string>
     <string name="time_text">00:00</string>
     <string name="pick_time_btn_text">Pick Time</string>
     <string name="save_btn_text">Save</string>
+    <string name="you_finished_the_training">YOU FINISHED THE TRAINING!</string>
 </resources>
