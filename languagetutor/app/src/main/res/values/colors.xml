@@ -9,7 +9,9 @@
     <color name="incorrectBackground">#EBB5AA</color>
     <color name="background">#96c9e6</color>
     <color name="trainingButton">#E9DB62</color>
+    <color name="text">#171718</color>
     <color name="historyButton">#61E4AF</color>
+    <color name="historyBackground">#F2DCA8</color>
     <color name="addMainButton">#CD76ED</color>
     <color name="saveButton">#61E4AF</color>
     <color name="timePickerButton">#E9DB62</color>
