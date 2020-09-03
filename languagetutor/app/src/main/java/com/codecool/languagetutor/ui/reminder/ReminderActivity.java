@@ -3,6 +3,8 @@ package com.codecool.languagetutor.ui.reminder;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -25,19 +27,26 @@ import java.util.GregorianCalendar;
 
 public class ReminderActivity extends AppCompatActivity implements TimePickerDialog.OnTimeSetListener {
 
-    private final String TIME_PICKER_TAG = "time picker";
-    private TextView textViewTime;
+    private final String TIME_PICKER_TAG = "time_picker";
     private Calendar selectedTime;
+
+    @BindView(R.id.open_time)
+    Button openTimeButton;
+    @BindView(R.id.save_button)
+    Button saveButton;
+    @BindView(R.id.textView_time)
+    TextView textViewTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
 
-        textViewTime = findViewById(R.id.textView_time);
-        Button openTimeButton = findViewById(R.id.open_time);
-        Button saveButton = findViewById(R.id.save_button);
+        ButterKnife.bind(this);
+        setUpClickListeners();
+    }
 
+    private void setUpClickListeners() {
         openTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,12 +60,11 @@ public class ReminderActivity extends AppCompatActivity implements TimePickerDia
             @Override
             public void onClick(View v) {
                 if (selectedTime.after(GregorianCalendar.getInstance())) {
-                    Toast.makeText(getApplicationContext(), "Reminder Saved!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.reminder_saved_toast_msg, Toast.LENGTH_SHORT).show();
                     startAlarm();
-                    Intent intent = new Intent(ReminderActivity.this, MainActivity.class);
                     finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), "Cannot select past time", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), R.string.reminder_past_time_msg, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -67,7 +75,6 @@ public class ReminderActivity extends AppCompatActivity implements TimePickerDia
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
-
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, selectedTime.getTimeInMillis(), pendingIntent);
     }
 

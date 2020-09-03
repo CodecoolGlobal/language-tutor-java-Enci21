@@ -2,7 +2,6 @@ package com.codecool.languagetutor.source;
 
 import android.app.Application;
 
-import com.codecool.languagetutor.LangTutorApp;
 import com.codecool.languagetutor.model.History;
 import com.codecool.languagetutor.model.Word;
 import com.codecool.languagetutor.source.remote.WordDao;

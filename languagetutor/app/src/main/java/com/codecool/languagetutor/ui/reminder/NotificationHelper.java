@@ -20,7 +20,7 @@ public class NotificationHelper extends ContextWrapper {
 
     private NotificationManager manager;
     public static final String CHANNEL_ID = "channelID";
-    public static final String CHANNEL_Name = "Channel Name";
+    public static final String CHANNEL_Name = "ChannelName";
 
     public NotificationHelper(Context base) {
         super(base);

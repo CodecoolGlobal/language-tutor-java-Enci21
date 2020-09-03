@@ -36,8 +36,12 @@ public class AddWordActivity extends AppCompatActivity implements AddWordContrac
 
         ((LangTutorApp) getApplication()).getComponent().inject(this);
         presenter.onAttach(this);
-
         ButterKnife.bind(this);
+
+        setClickListener();
+    }
+
+    private void setClickListener() {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,13 +49,11 @@ public class AddWordActivity extends AppCompatActivity implements AddWordContrac
                 presenter.insert(word);
             }
         });
-
     }
-
 
     @Override
     public void displayToast() {
-        Toast.makeText(this, "You added a new word!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.word_added_toast_msg, Toast.LENGTH_SHORT).show();
         englishWord.setText("");
         translation.setText("");
     }

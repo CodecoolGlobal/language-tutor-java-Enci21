@@ -16,6 +16,8 @@ import java.util.concurrent.Executors;
 @Database(entities = {Word.class, History.class, HistoryWordCrossRef.class}, version = 1, exportSchema = false)
 public abstract class WordDatabase extends RoomDatabase {
 
+    public static final String LANGUAGE_TUTOR__DB = "language_tutor__db";
+
     public abstract WordDao wordDao();
 
     private static volatile WordDatabase INSTANCE;
@@ -26,7 +28,7 @@ public abstract class WordDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (Database.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), WordDatabase.class, "language_tutor__db")
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), WordDatabase.class, LANGUAGE_TUTOR__DB)
                             .build();
                 }
             }

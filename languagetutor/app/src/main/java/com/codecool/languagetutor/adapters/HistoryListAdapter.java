@@ -15,6 +15,8 @@ import java.util.List;
 
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.HistoryViewHolder> {
 
+    public static final int END_INDEX = 16;
+    public static final int BEGIN_INDEX = 0;
     List<History> allHistories;
 
     public HistoryListAdapter(List<History> allHistories) {
@@ -32,7 +34,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
     public void onBindViewHolder(@NonNull HistoryViewHolder holder, int position) {
         History history = allHistories.get(position);
         holder.ratio.setText(history.getRatio());
-        holder.date.setText(history.getDate().toString().substring(0, 16));
+        holder.date.setText(history.getDate().toString().substring(BEGIN_INDEX, END_INDEX));
         holder.incorrectWords.setText(history.getIncorrectWords());
     }
 
