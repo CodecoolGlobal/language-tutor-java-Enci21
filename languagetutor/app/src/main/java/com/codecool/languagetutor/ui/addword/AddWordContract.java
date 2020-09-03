@@ -15,6 +15,5 @@ public interface AddWordContract {
         void onAttach(AddWordContract.View view);
 
         void insert(Word word);
-
     }
 }

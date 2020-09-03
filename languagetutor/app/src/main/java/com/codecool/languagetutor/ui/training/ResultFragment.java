@@ -18,17 +18,18 @@ import butterknife.ButterKnife;
 
 public class ResultFragment extends Fragment {
 
+    public static final String CLASS_EXCEPTION_MSG = " must implement OnResultListener";
+    private ClosingInterface closingInterface;
+
     @BindView(R.id.exitButton)
     Button exitButton;
 
-    private ClosingInterface closingInterface;
-
     public ResultFragment() {
-
     }
 
-
     public interface ClosingInterface {
+        void saveResult();
+
         void onClose();
     }
 
@@ -37,15 +38,23 @@ public class ResultFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_result, container, false);
         ButterKnife.bind(this, view);
+        setUpClickListener();
+        return view;
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        closingInterface.saveResult();
+    }
+
+    private void setUpClickListener() {
         exitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 closingInterface.onClose();
             }
         });
-
-        return view;
     }
 
     @Override
@@ -54,9 +63,11 @@ public class ResultFragment extends Fragment {
         try {
             closingInterface = (ResultFragment.ClosingInterface) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OnResultListener");
+            throw new ClassCastException(context.toString() + CLASS_EXCEPTION_MSG);
         }
     }
+
+
 
 
 }

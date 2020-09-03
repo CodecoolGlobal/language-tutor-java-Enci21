@@ -31,7 +31,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
     HistoryContract.Presenter presenter;
 
     private List<History> allHistory = new ArrayList<>();
-    HistoryListAdapter adapter;
+    private HistoryListAdapter adapter;
 
     @BindView(R.id.historyRecyclerView)
     RecyclerView historyRecyclerView;
@@ -48,6 +48,10 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
         presenter.onAttach(this);
         presenter.getAllHistory();
 
+        setUpRecyclerView();
+    }
+
+    private void setUpRecyclerView() {
         adapter = new HistoryListAdapter(allHistory);
         historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         historyRecyclerView.setAdapter(adapter);

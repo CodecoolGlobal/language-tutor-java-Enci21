@@ -24,4 +24,10 @@
     <string name="empty_history_msg">You do not have trainging history yet!</string>
     <string name="note_title">It\'s learning time!</string>
     <string name="note_text">Practice makes perfect!</string>
+    <string name="word_added_toast_msg">You added a new word!</string>
+    <string name="reminder_saved_toast_msg">Reminder Saved!</string>
+    <string name="reminder_past_time_msg">Cannot select past time</string>
+    <string name="correct_answer_msg">Correct!</string>
+    <string name="flag_image_desc">flag_image</string>
+    <string name="splash_title">Language Tutor</string>
 </resources>

@@ -18,6 +18,7 @@ import com.codecool.languagetutor.ui.training.TrainingActivity;
 
 public class SpinnerActivity extends AppCompatActivity {
 
+    public static final String NUMBER_OF_WORDS = "numberOfWords";
 
     @BindView(R.id.spinner)
     Spinner spinner;
@@ -26,9 +27,6 @@ public class SpinnerActivity extends AppCompatActivity {
     @BindView(R.id.howManyText)
     TextView welcomeTraining;
 
-    int counter = 0;
-    int numberOfWords;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,20 +34,32 @@ public class SpinnerActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        setUpSpinner();
+        setUpClickListener();
+    }
+
+    private void setUpSpinner() {
         Integer[] options = {5, 10, 20};
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
+    }
+
+    private void setUpClickListener() {
         spinnerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
+                int numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
                 Toast.makeText(v.getContext(), "You will get " + spinner.getSelectedItem().toString() + " questions", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(), TrainingActivity.class);
-                intent.putExtra("numberOfWords", numberOfWords);
-                startActivity(intent);
-                finish();
+                startTraining(numberOfWords);
             }
         });
+    }
+
+    private void startTraining(int numberOfWords) {
+        Intent intent = new Intent(SpinnerActivity.this, TrainingActivity.class);
+        intent.putExtra(NUMBER_OF_WORDS, numberOfWords);
+        startActivity(intent);
+        finish();
     }
 }

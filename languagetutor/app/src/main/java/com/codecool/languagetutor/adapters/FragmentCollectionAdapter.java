@@ -15,11 +15,14 @@ import java.util.List;
 
 public class FragmentCollectionAdapter extends FragmentStatePagerAdapter {
 
+    public static final String ID = "id";
+    public static final String ENGLISH_WORD = "english_word";
+    public static final String TRANSLATION = "translation";
     private int rounds;
     private List<Word> words;
 
     public FragmentCollectionAdapter(@NonNull FragmentManager fm) {
-        super(fm);
+        super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     }
 
     public void setRounds(int rounds) {
@@ -37,9 +40,9 @@ public class FragmentCollectionAdapter extends FragmentStatePagerAdapter {
             TrainingFragment trainingFragment = new TrainingFragment();
             Bundle bundle = new Bundle();
             Word word = words.get(position);
-            bundle.putLong("id", word.getId());
-            bundle.putString("english_word", word.getEnWord());
-            bundle.putString("translation", word.getTranslation());
+            bundle.putLong(ID, word.getId());
+            bundle.putString(ENGLISH_WORD, word.getEnWord());
+            bundle.putString(TRANSLATION, word.getTranslation());
             trainingFragment.setArguments(bundle);
             return trainingFragment;
         }

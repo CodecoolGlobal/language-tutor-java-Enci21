@@ -30,13 +30,16 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.button_training)
     Button trainingButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         ButterKnife.bind(this);
+        setUpMenuClickListeners();
+    }
+
+    private void setUpMenuClickListeners() {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

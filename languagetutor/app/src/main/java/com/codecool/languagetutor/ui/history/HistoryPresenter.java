@@ -1,6 +1,5 @@
 package com.codecool.languagetutor.ui.history;
 
-import android.app.Application;
 import android.util.Log;
 
 import com.codecool.languagetutor.model.History;
@@ -17,9 +16,9 @@ import io.reactivex.schedulers.Schedulers;
 
 public class HistoryPresenter implements HistoryContract.Presenter {
 
+    private static final String ERROR_TAG = "history_rxjava";
     private HistoryContract.View view;
     private WordRepository repository;
-    private static final String ERROR_TAG = "history_rxjava";
 
     @Inject
     public HistoryPresenter(WordRepository repository) {
@@ -50,7 +49,7 @@ public class HistoryPresenter implements HistoryContract.Presenter {
 
                     @Override
                     public void onSuccess(List<History> histories) {
-                        if (!histories.isEmpty()){
+                        if (!histories.isEmpty()) {
                             view.showHistory(histories);
                         } else {
                             view.showEmptyHistory();
