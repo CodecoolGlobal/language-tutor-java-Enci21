@@ -48,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        }, 15000);
+        }, 9000);
     }
 
 
@@ -59,7 +59,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void animate() {
-        valueAnimator = ValueAnimator.ofFloat(0f, 3600f).setDuration(15000);
+        valueAnimator = ValueAnimator.ofFloat(0f, 3000f).setDuration(9000);
         valueAnimator.setRepeatMode(ValueAnimator.RESTART);
         valueAnimator.setRepeatCount(ValueAnimator.INFINITE);
         valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
