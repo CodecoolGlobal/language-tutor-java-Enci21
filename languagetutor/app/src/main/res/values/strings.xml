@@ -28,4 +28,6 @@
     <string name="reminder_saved_toast_msg">Reminder Saved!</string>
     <string name="reminder_past_time_msg">Cannot select past time</string>
     <string name="correct_answer_msg">Correct!</string>
+    <string name="flag_image_desc">flag_image</string>
+    <string name="splash_title">Language Tutor</string>
 </resources>
