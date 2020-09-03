@@ -13,6 +13,22 @@
     <string name="enter_the_translation">Enter the translation</string>
     <string name="how_many_questions_do_you_want">How many questions do you want?</string>
     <string name="well_done">WELL DONE!</string>
-    <string name="go_back_to_menu">Go back to menu</string>
+    <string name="go_back_to_menu">Main menu</string>
     <string name="empty_db_msg">You do not have enough words in memory yet!</string>
+    <string name="options_menu_reminder">Reminder</string>
+    <string name="reminder_title">Set Practice Reminder</string>
+    <string name="time_text">00:00</string>
+    <string name="pick_time_btn_text">Pick Time</string>
+    <string name="save_btn_text">Save</string>
+    <string name="you_finished_the_training">YOU FINISHED THE TRAINING!</string>
+    <string name="empty_history_msg">You do not have trainging history yet!</string>
+    <string name="note_title">It\'s learning time!</string>
+    <string name="note_text">Practice makes perfect!</string>
+    <string name="word_added_toast_msg">You added a new word!</string>
+    <string name="reminder_saved_toast_msg">Reminder Saved!</string>
+    <string name="reminder_past_time_msg">Cannot select past time</string>
+    <string name="correct_answer_msg">Correct!</string>
+    <string name="flag_image_desc">flag_image</string>
+    <string name="splash_title">Language Tutor</string>
+    <string name="add_word_empty_field">You must fill out both fields!</string>
 </resources>

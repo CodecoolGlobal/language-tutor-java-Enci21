@@ -30,4 +30,33 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="save_button">
+        <item name="android:layout_width">150dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:background">@color/saveButton</item>
+    </style>
+
+    <style name="time_picker_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@+id/textView_time</item>
+        <item name="android:layout_marginTop">@dimen/margin_16</item>
+        <item name="android:background">@color/timePickerButton</item>
+    </style>
+
+    <style name="time_text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/margin_16</item>
+        <item name="android:textSize">28sp</item>
+    </style>
+
+    <style name="reminder_title">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textSize">32sp</item>
+        <item name="android:layout_marginBottom">32dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
 </resources>
