@@ -30,4 +30,5 @@
     <string name="correct_answer_msg">Correct!</string>
     <string name="flag_image_desc">flag_image</string>
     <string name="splash_title">Language Tutor</string>
+    <string name="add_word_empty_field">You must fill out both fields!</string>
 </resources>
