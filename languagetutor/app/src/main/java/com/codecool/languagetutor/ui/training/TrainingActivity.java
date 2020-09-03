@@ -2,6 +2,7 @@ package com.codecool.languagetutor.ui.training;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -37,17 +38,15 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     private static final String NUMBEROFWORDS_TAG = "numberOfWords";
 
     private FragmentCollectionAdapter fragmentCollectionAdapter;
+    private String incorrectWords = "";
+    private int incorrectWordsAmount = 0;
+    private int counter = 0;
+    private int numberOfWords;
 
     @BindView(R.id.pager)
     ViewPager viewPager;
-
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
-
-    String incorrectWords = "";
-    int incorrectWordsAmount = 0;
-    int counter = 0;
-    int numberOfWords;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +66,10 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
 
         numberOfWords = getIntent().getIntExtra(NUMBEROFWORDS_TAG, 5);
         presenter.getWords(numberOfWords);
+        showProgressBar();
+    }
+
+    private void showProgressBar() {
         progressBar.setMax(numberOfWords);
         progressBar.setProgress(counter);
         progressBar.setVisibility(View.VISIBLE);
@@ -88,25 +91,28 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     @Override
     public void onResult(boolean isCorrect, Word word) {
         if (!isCorrect) {
-            counter++;
             incorrectWordsAmount++;
             incorrectWords += word.getEnWord() + " " + word.getTranslation() + "\n\n";
-            progressBar.setProgress(counter);
-        } else {
-            counter++;
-            progressBar.setProgress(counter);
         }
+        counter++;
+        progressBar.setProgress(counter);
         viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
     }
 
     @Override
-    public void onClose() {
+    public void saveResult() {
         String ratio = Integer.toString(numberOfWords) + " / " + Integer.toString(numberOfWords - incorrectWordsAmount);
-        Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
         Date date = Calendar.getInstance().getTime();
         History history = new History(date, ratio, incorrectWords);
         presenter.save(history);
+    }
+
+    @Override
+    public void onClose() {
+        Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
     }
 
     @Override

@@ -19,15 +19,14 @@ import io.reactivex.schedulers.Schedulers;
 
 public class TrainingPresenter implements TrainingContract.Presenter {
 
-    private TrainingContract.View view;
-    private WordRepository repository;
-
     @Inject
     public TrainingPresenter( WordRepository repository) {
         this.repository = repository;
     }
 
     private static final String ERROR_TAG = "RXJAVA";
+    private TrainingContract.View view;
+    private WordRepository repository;
 
     @Override
     public void onAttach(TrainingContract.View view) {
@@ -38,7 +37,6 @@ public class TrainingPresenter implements TrainingContract.Presenter {
     public void onDetach() {
         this.view = null;
     }
-
 
     @Override
     public void save(History history) {
@@ -79,6 +77,5 @@ public class TrainingPresenter implements TrainingContract.Presenter {
                         Log.d(ERROR_TAG, e.getMessage());
                     }
                 });
-
     }
 }

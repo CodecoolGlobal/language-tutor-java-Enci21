@@ -21,6 +21,15 @@ import butterknife.ButterKnife;
 
 public class TrainingFragment extends Fragment {
 
+    public static final String ERROR_MSG = " must implement OnResultListener";
+    public static final String ID = "id";
+    public static final String ENGLISH_WORD = "english_word";
+    public static final String TRANSLATION = "translation";
+    private View view;
+    private Long wordId;
+    private String english_word;
+    private String translation;
+    private OnResultListener callback;
 
     @BindView(R.id.answer)
     EditText answer;
@@ -30,14 +39,6 @@ public class TrainingFragment extends Fragment {
     Button checkButton;
     @BindView(R.id.correct_answer)
     TextView correctAnswerText;
-
-    View view;
-    Long wordId;
-    String english_word;
-    private String translation;
-
-    private OnResultListener callback;
-    private int position;
 
     public interface OnResultListener {
         void onResult(boolean isCorrect, Word word);
@@ -49,7 +50,7 @@ public class TrainingFragment extends Fragment {
         try {
             callback = (OnResultListener) context;
         } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OnResultListener");
+            throw new ClassCastException(context.toString() + ERROR_MSG);
         }
     }
 
@@ -65,10 +66,15 @@ public class TrainingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_training, container, false);
         ButterKnife.bind(this, view);
-        wordId = getArguments().getLong("id");
-        english_word = getArguments().getString("english_word");
-        translation = getArguments().getString("translation");
+        wordId = getArguments().getLong(ID);
+        english_word = getArguments().getString(ENGLISH_WORD);
+        translation = getArguments().getString(TRANSLATION);
         englishWord.setText(english_word);
+        setUpClickListener();
+        return view;
+    }
+
+    private void setUpClickListener() {
         checkButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +82,6 @@ public class TrainingFragment extends Fragment {
                 checkButton.setEnabled(false);
             }
         });
-        return view;
     }
 
     private void checkAnswer() {
@@ -84,22 +89,20 @@ public class TrainingFragment extends Fragment {
         Word word = new Word(wordId, english_word, translation);
         if (answerGiven.toLowerCase().equals(translation)) {
             showCorrect();
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    callback.onResult(true, word);
-                }
-            }, 2000);
-
+            runDelayedCallback(true, word);
         } else {
             showIncorrect();
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    callback.onResult(false, word);
-                }
-            }, 2000);
+            runDelayedCallback(false, word);
         }
+    }
+
+    private void runDelayedCallback(boolean isCorrect, Word word) {
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                callback.onResult(isCorrect, word);
+            }
+        }, 2000);
     }
 
     private void showIncorrect() {
@@ -110,7 +113,7 @@ public class TrainingFragment extends Fragment {
     }
 
     private void showCorrect() {
-        correctAnswerText.setText("Correct!");
+        correctAnswerText.setText(R.string.correct_answer_msg);
         correctAnswerText.setVisibility(View.VISIBLE);
         correctAnswerText.setTextColor(getResources().getColor(R.color.correctColor));
         view.setBackgroundColor(getResources().getColor(R.color.correctBackground));
