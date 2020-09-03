@@ -36,6 +36,9 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
         holder.ratio.setText(history.getRatio());
         holder.date.setText(history.getDate().toString().substring(BEGIN_INDEX, END_INDEX));
         holder.incorrectWords.setText(history.getIncorrectWords());
+        if (history.getIncorrectWords().isEmpty()) {
+            holder.incorrectWords.setText(holder.itemView.getContext().getString(R.string.well_done) + '\n');
+        }
     }
 
     @Override
