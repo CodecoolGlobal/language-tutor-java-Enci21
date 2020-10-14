@@ -26,12 +26,13 @@ These instructions will get you a copy of the project up and running on your loc
 
 
 2.  Menu screen
+
 ![demomenu](demomenu.png)
 
 3. Add new words
 
 
-4. Decide with how many words you want train with
+4. Decide with how many words you want to train with
 
 
 5. Train
