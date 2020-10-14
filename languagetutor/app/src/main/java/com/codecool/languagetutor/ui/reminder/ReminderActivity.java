@@ -3,8 +3,6 @@ package com.codecool.languagetutor.ui.reminder;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -14,11 +12,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codecool.languagetutor.ui.MainActivity;
+import com.codecool.languagetutor.databinding.ActivityReminderBinding;
 import com.codecool.languagetutor.R;
 
 import java.text.DateFormat;
@@ -29,33 +25,24 @@ public class ReminderActivity extends AppCompatActivity implements TimePickerDia
 
     private final String TIME_PICKER_TAG = "time_picker";
     private Calendar selectedTime;
-
-    @BindView(R.id.open_time)
-    Button openTimeButton;
-    @BindView(R.id.save_button)
-    Button saveButton;
-    @BindView(R.id.textView_time)
-    TextView textViewTime;
+    private ActivityReminderBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reminder);
-
-        ButterKnife.bind(this);
+        binding = ActivityReminderBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         setUpClickListeners();
     }
 
     private void setUpClickListeners() {
-        openTimeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                DialogFragment timePicker = new TimePicker();
-                timePicker.show(getSupportFragmentManager(), TIME_PICKER_TAG);
-            }
+        binding.openTime.setOnClickListener(v -> {
+            DialogFragment timePicker = new TimePicker();
+            timePicker.show(getSupportFragmentManager(), TIME_PICKER_TAG);
         });
 
-        saveButton.setOnClickListener(new View.OnClickListener() {
+        binding.saveButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onClick(View v) {
@@ -85,7 +72,7 @@ public class ReminderActivity extends AppCompatActivity implements TimePickerDia
         selectedTime.set(Calendar.MINUTE, minute);
         selectedTime.set(Calendar.SECOND, 0);
         String timeText = DateFormat.getTimeInstance(DateFormat.SHORT).format(selectedTime.getTime());
-        textViewTime.setText(timeText);
+        binding.textViewTime.setText(timeText);
     }
 
 }

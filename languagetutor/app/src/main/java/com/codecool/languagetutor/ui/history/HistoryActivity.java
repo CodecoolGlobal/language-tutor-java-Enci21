@@ -3,26 +3,20 @@ package com.codecool.languagetutor.ui.history;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 
 import com.codecool.languagetutor.LangTutorApp;
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.adapters.HistoryListAdapter;
+import com.codecool.languagetutor.databinding.ActivityHistoryBinding;
 import com.codecool.languagetutor.model.History;
-
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class HistoryActivity extends AppCompatActivity implements HistoryContract.View {
@@ -32,17 +26,14 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
     private List<History> allHistory = new ArrayList<>();
     private HistoryListAdapter adapter;
-
-    @BindView(R.id.historyRecyclerView)
-    RecyclerView historyRecyclerView;
-    @BindView(R.id.message)
-    TextView message;
+    private ActivityHistoryBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
-        ButterKnife.bind(this);
+        binding = ActivityHistoryBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         ((LangTutorApp) getApplication()).getComponent().injectHistory(this);
         presenter.onAttach(this);
@@ -53,8 +44,8 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
     private void setUpRecyclerView() {
         adapter = new HistoryListAdapter(allHistory);
-        historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        historyRecyclerView.setAdapter(adapter);
+        binding.historyRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        binding.historyRecyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -66,8 +57,8 @@ public class HistoryActivity extends AppCompatActivity implements HistoryContrac
 
     @Override
     public void showEmptyHistory() {
-        message.setText(R.string.empty_history_msg);
-        message.setVisibility(View.VISIBLE);
+        binding.message.setText(R.string.empty_history_msg);
+        binding.message.setVisibility(View.VISIBLE);
     }
 
     @Override

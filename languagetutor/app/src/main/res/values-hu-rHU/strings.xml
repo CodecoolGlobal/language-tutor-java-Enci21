@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Language Tutor</string>
+    <string name="add_word_btn_label">Új szó</string>
+    <string name="train_btn_label">Gyakorlás</string>
+    <string name="history_btn_label">Eredmények</string>
+    <string name="save_btn_label">Mentés</string>
+    <string name="spinner_btn_label">Kezdjük!</string>
+    <string name="enter_the_translation_here">A fordítás</string>
+    <string name="enter_the_word">A szó</string>
+    <string name="enter_the_translation">A fordítás</string>
+    <string name="how_many_questions_do_you_want">Hány kérdés legyen?</string>
+    <string name="check_btn_label">Kész</string>
+    <string name="well_done">REMEK!</string>
+    <string name="go_back_to_menu">Menü</string>
+    <string name="empty_db_msg">Nincs elég szavad még!</string>
+    <string name="options_menu_reminder">Emlékeztetō</string>
+    <string name="reminder_title">Készíts emlékeztetōt</string>
+    <string name="pick_time_btn_text">Válassz idōt</string>
+    <string name="save_btn_text">Mentés</string>
+    <string name="you_finished_the_training">A GYAKORLÁSNAK VÉGE!</string>
+    <string name="empty_history_msg">Nincs még eredményed!</string>
+    <string name="note_title">Itt az idō, gyakoroljunk!</string>
+    <string name="note_text">Gyarkolás teszi a mestert!</string>
+    <string name="word_added_toast_msg">Sikeresen létrehoztad az új szót!</string>
+    <string name="reminder_saved_toast_msg">Az emlékeztetōd elmentve!</string>
+    <string name="reminder_past_time_msg">A kiválasztott idō a múltban van</string>
+    <string name="correct_answer_msg">Helyes!</string>
+    <string name="add_word_empty_field">Kérlek, tōltsd ki mindkét mezōt!</string>
+</resources>
