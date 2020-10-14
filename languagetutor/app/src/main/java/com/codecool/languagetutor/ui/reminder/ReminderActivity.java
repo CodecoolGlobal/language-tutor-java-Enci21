@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.codecool.languagetutor.ui.MainActivity;
 import com.codecool.languagetutor.R;
 
 import java.text.DateFormat;
