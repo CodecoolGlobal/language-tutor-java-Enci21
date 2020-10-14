@@ -10,6 +10,7 @@ import com.codecool.languagetutor.LangTutorApp;
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.databinding.ActivityAddWordBinding;
 import com.codecool.languagetutor.model.Word;
+import com.codecool.languagetutor.util.HideKeyBoard;
 
 import javax.inject.Inject;
 
@@ -36,6 +37,7 @@ public class AddWordActivity extends AppCompatActivity implements AddWordContrac
 
     private void setClickListener() {
         binding.saveButton.setOnClickListener(v -> {
+            HideKeyBoard.hideKeyboard(this);
             if (binding.englishWord.getText().toString().trim().equals("") || binding.translation.getText().toString().trim().equals("")) {
                 Toast.makeText(getApplicationContext(), R.string.add_word_empty_field, Toast.LENGTH_SHORT).show();
             } else {

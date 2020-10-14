@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.databinding.FragmentTrainingBinding;
 import com.codecool.languagetutor.model.Word;
+import com.codecool.languagetutor.util.HideKeyBoard;
 
 
 public class TrainingFragment extends Fragment {
@@ -64,6 +65,7 @@ public class TrainingFragment extends Fragment {
 
     private void setUpClickListener() {
         binding.checkButton.setOnClickListener(v -> {
+            HideKeyBoard.hideKeyboard(getActivity());
             checkAnswer();
             binding.checkButton.setEnabled(false);
         });
