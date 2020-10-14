@@ -9,6 +9,7 @@
     android:layout_marginEnd="@dimen/margin_16"
     android:layout_marginBottom="@dimen/margin_16"
     android:background="@color/historyButton"
+    android:id="@+id/history_activity"
     tools:context=".ui.history.HistoryActivity">
 
     <androidx.recyclerview.widget.RecyclerView
