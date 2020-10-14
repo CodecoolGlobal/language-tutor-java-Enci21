@@ -5,24 +5,19 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.codecool.languagetutor.R;
+import com.codecool.languagetutor.databinding.FragmentResultBinding;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class ResultFragment extends Fragment {
 
     public static final String CLASS_EXCEPTION_MSG = " must implement OnResultListener";
     private ClosingInterface closingInterface;
-
-    @BindView(R.id.exitButton)
-    Button exitButton;
+    private FragmentResultBinding binding;
 
     public ResultFragment() {
     }
@@ -46,8 +41,8 @@ public class ResultFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_result, container, false);
-        ButterKnife.bind(this, view);
+        binding = FragmentResultBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
         setUpClickListener();
         return view;
     }
@@ -59,7 +54,7 @@ public class ResultFragment extends Fragment {
     }
 
     private void setUpClickListener() {
-        exitButton.setOnClickListener(v -> closingInterface.onClose());
+        binding.exitButton.setOnClickListener(v -> closingInterface.onClose());
     }
 
     @Override
