@@ -33,6 +33,16 @@ public class ResultFragment extends Fragment {
         void onClose();
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            closingInterface = (ResultFragment.ClosingInterface) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + CLASS_EXCEPTION_MSG);
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,25 +59,13 @@ public class ResultFragment extends Fragment {
     }
 
     private void setUpClickListener() {
-        exitButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                closingInterface.onClose();
-            }
-        });
+        exitButton.setOnClickListener(v -> closingInterface.onClose());
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        try {
-            closingInterface = (ResultFragment.ClosingInterface) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + CLASS_EXCEPTION_MSG);
-        }
+    public void onDestroyView() {
+        closingInterface = null;
+        super.onDestroyView();
     }
-
-
-
 
 }

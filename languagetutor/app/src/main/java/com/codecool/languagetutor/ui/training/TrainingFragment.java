@@ -57,7 +57,7 @@ public class TrainingFragment extends Fragment {
     public TrainingFragment() {
     }
 
-    public static TrainingFragment getInstance(int position) {
+    public static TrainingFragment getInstance() {
         TrainingFragment fragment = new TrainingFragment();
         return fragment;
     }
@@ -75,12 +75,9 @@ public class TrainingFragment extends Fragment {
     }
 
     private void setUpClickListener() {
-        checkButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkAnswer();
-                checkButton.setEnabled(false);
-            }
+        checkButton.setOnClickListener(v -> {
+            checkAnswer();
+            checkButton.setEnabled(false);
         });
     }
 
@@ -97,12 +94,7 @@ public class TrainingFragment extends Fragment {
     }
 
     private void runDelayedCallback(boolean isCorrect, Word word) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                callback.onResult(isCorrect, word);
-            }
-        }, 2000);
+        new Handler().postDelayed(() -> callback.onResult(isCorrect, word), 2000);
     }
 
     private void showIncorrect() {
@@ -117,5 +109,11 @@ public class TrainingFragment extends Fragment {
         correctAnswerText.setVisibility(View.VISIBLE);
         correctAnswerText.setTextColor(getResources().getColor(R.color.correctColor));
         view.setBackgroundColor(getResources().getColor(R.color.correctBackground));
+    }
+
+    @Override
+    public void onDestroyView() {
+        callback = null;
+        super.onDestroyView();
     }
 }

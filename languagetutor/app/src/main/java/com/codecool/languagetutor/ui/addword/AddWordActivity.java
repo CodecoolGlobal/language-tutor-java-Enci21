@@ -45,7 +45,7 @@ public class AddWordActivity extends AppCompatActivity implements AddWordContrac
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (englishWord.getText().toString().trim().equals("") || translation.getText().toString().trim().equals("")){
+                if (englishWord.getText().toString().trim().equals("") || translation.getText().toString().trim().equals("")) {
                     Toast.makeText(getApplicationContext(), R.string.add_word_empty_field, Toast.LENGTH_SHORT).show();
                 } else {
                     Word word = new Word(englishWord.getText().toString().trim(), translation.getText().toString().trim());
