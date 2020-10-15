@@ -6,14 +6,11 @@ import com.codecool.languagetutor.model.Word;
 
 public interface AddWordContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
         void displayToast();
     }
 
-    interface Presenter extends BasePresenter {
-
-        void onAttach(AddWordContract.View view);
-
+    interface Presenter extends BasePresenter<AddWordContract.View> {
         void insert(Word word);
     }
 }

@@ -9,17 +9,14 @@ import java.util.List;
 
 public interface TrainingContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
 
         void showFragments(List<Word> words);
-
-        void showEmptyDatabaseMessage();
     }
 
-    interface Presenter extends BasePresenter {
-        void save(History h);
+    interface Presenter extends BasePresenter<TrainingContract.View> {
 
-        void onAttach(TrainingContract.View view);
+        void save(History h);
 
         void getWords(int rounds);
     }

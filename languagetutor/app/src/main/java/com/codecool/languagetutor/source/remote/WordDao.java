@@ -28,4 +28,6 @@ public interface WordDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertHistory(History history);
 
+    @Query("SELECT Count(*) FROM words")
+    Single<Integer> getWordCount();
 }

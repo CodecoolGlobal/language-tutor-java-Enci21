@@ -7,6 +7,8 @@ import com.codecool.languagetutor.ui.addword.AddWordContract;
 import com.codecool.languagetutor.ui.addword.AddWordPresenter;
 import com.codecool.languagetutor.ui.history.HistoryContract;
 import com.codecool.languagetutor.ui.history.HistoryPresenter;
+import com.codecool.languagetutor.ui.spinner.SpinnerContract;
+import com.codecool.languagetutor.ui.spinner.SpinnerPresenter;
 import com.codecool.languagetutor.ui.training.TrainingContract;
 import com.codecool.languagetutor.ui.training.TrainingPresenter;
 
@@ -49,5 +51,10 @@ public class AppModule {
     @Provides
     public AddWordContract.Presenter getAddWordPresenter() {
         return new AddWordPresenter(getRepository());
+    }
+
+    @Provides
+    public SpinnerContract.Presenter getSpinnerPresenter() {
+        return new SpinnerPresenter(getRepository());
     }
 }
