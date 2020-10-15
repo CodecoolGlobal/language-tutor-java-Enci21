@@ -2,17 +2,15 @@ package com.codecool.languagetutor.ui.training;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager.widget.ViewPager;
 
 import com.codecool.languagetutor.LangTutorApp;
 import com.codecool.languagetutor.adapters.FragmentCollectionAdapter;
+import com.codecool.languagetutor.databinding.ActivityTrainingBinding;
 import com.codecool.languagetutor.ui.MainActivity;
 import com.codecool.languagetutor.R;
 import com.codecool.languagetutor.model.History;
@@ -24,8 +22,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class TrainingActivity extends AppCompatActivity implements TrainingContract.View, TrainingFragment.OnResultListener, ResultFragment.ClosingInterface {
 
@@ -37,26 +33,23 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     private static final String COUNTER_TAG = "counter";
     private static final String NUMBEROFWORDS_TAG = "numberOfWords";
 
+    private ActivityTrainingBinding binding;
     private FragmentCollectionAdapter fragmentCollectionAdapter;
     private String incorrectWords = "";
     private int incorrectWordsAmount = 0;
     private int counter = 0;
     private int numberOfWords;
 
-    @BindView(R.id.pager)
-    ViewPager viewPager;
-    @BindView(R.id.progressBar)
-    ProgressBar progressBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_training);
+        binding = ActivityTrainingBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
         ((LangTutorApp) getApplication()).getComponent().inject(this);
 
         presenter.onAttach(this);
-        ButterKnife.bind(this);
 
         if (savedInstanceState != null) {
             incorrectWords = savedInstanceState.getString(INCORRECTWORDS_TAG);
@@ -70,9 +63,9 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     }
 
     private void showProgressBar() {
-        progressBar.setMax(numberOfWords);
-        progressBar.setProgress(counter);
-        progressBar.setVisibility(View.VISIBLE);
+        binding.progressBar.setMax(numberOfWords);
+        binding.progressBar.setProgress(counter);
+        binding.progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -80,7 +73,7 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
         fragmentCollectionAdapter = new FragmentCollectionAdapter(getSupportFragmentManager());
         fragmentCollectionAdapter.setRounds(words.size());
         fragmentCollectionAdapter.setWords(words);
-        viewPager.setAdapter(fragmentCollectionAdapter);
+        binding.pager.setAdapter(fragmentCollectionAdapter);
     }
 
     @Override
@@ -90,8 +83,8 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
             incorrectWords += word.getEnWord() + " " + word.getTranslation() + "\n\n";
         }
         counter++;
-        progressBar.setProgress(counter);
-        viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+        binding.progressBar.setProgress(counter);
+        binding.pager.setCurrentItem(binding.pager.getCurrentItem() + 1);
     }
 
     @Override

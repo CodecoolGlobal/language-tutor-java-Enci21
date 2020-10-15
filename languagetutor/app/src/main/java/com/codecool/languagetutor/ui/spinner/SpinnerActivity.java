@@ -1,20 +1,16 @@
 package com.codecool.languagetutor.ui.spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.codecool.languagetutor.LangTutorApp;
 import com.codecool.languagetutor.R;
+import com.codecool.languagetutor.databinding.ActivitySpinnerBinding;
 import com.codecool.languagetutor.ui.training.TrainingActivity;
 
 import javax.inject.Inject;
@@ -25,19 +21,14 @@ public class SpinnerActivity extends AppCompatActivity implements SpinnerContrac
     SpinnerContract.Presenter presenter;
 
     public static final String NUMBER_OF_WORDS = "numberOfWords";
-
-    @BindView(R.id.spinner)
-    Spinner spinner;
-    @BindView(R.id.spinner_button)
-    Button spinnerButton;
-    @BindView(R.id.howManyText)
-    TextView welcomeTraining;
+    private ActivitySpinnerBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_spinner);
-        ButterKnife.bind(this);
+        binding = ActivitySpinnerBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
         ((LangTutorApp) getApplication()).getComponent().inject(this);
         presenter.onAttach(this);
         setUpSpinner();
@@ -48,14 +39,14 @@ public class SpinnerActivity extends AppCompatActivity implements SpinnerContrac
         Integer[] options = {5, 10, 20};
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
+        binding.spinner.setAdapter(adapter);
     }
 
     private void setUpClickListener() {
-        spinnerButton.setOnClickListener(new View.OnClickListener() {
+        binding.spinnerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int numberOfWords = Integer.parseInt(spinner.getSelectedItem().toString());
+                int numberOfWords = Integer.parseInt(binding.spinner.getSelectedItem().toString());
                 presenter.getWordsCount(numberOfWords);
             }
         });
@@ -63,7 +54,7 @@ public class SpinnerActivity extends AppCompatActivity implements SpinnerContrac
 
     @Override
     public void startTrainingActivity(int numberOfWords) {
-        Toast.makeText(this, "You will get " + spinner.getSelectedItem().toString() + " questions", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You will get " + binding.spinner.getSelectedItem().toString() + " questions", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(SpinnerActivity.this, TrainingActivity.class);
         intent.putExtra(NUMBER_OF_WORDS, numberOfWords);
         startActivity(intent);

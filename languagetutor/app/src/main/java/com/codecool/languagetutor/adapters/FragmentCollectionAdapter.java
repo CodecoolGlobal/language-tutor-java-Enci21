@@ -37,7 +37,7 @@ public class FragmentCollectionAdapter extends FragmentStatePagerAdapter {
             return fragment;
 
         } else {
-            TrainingFragment trainingFragment = new TrainingFragment();
+            TrainingFragment trainingFragment = TrainingFragment.getInstance();
             Bundle bundle = new Bundle();
             Word word = words.get(position);
             bundle.putLong(ID, word.getId());

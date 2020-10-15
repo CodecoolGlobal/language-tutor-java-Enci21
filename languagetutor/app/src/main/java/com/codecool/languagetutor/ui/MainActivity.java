@@ -6,62 +6,47 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.codecool.languagetutor.R;
+import com.codecool.languagetutor.databinding.ActivityMainBinding;
 import com.codecool.languagetutor.ui.addword.AddWordActivity;
 import com.codecool.languagetutor.ui.history.HistoryActivity;
 import com.codecool.languagetutor.ui.reminder.ReminderActivity;
 import com.codecool.languagetutor.ui.spinner.SpinnerActivity;
 
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.button_add_word)
-    Button addButton;
-    @BindView(R.id.button_history)
-    Button historyButton;
-    @BindView(R.id.button_training)
-    Button trainingButton;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
-        ButterKnife.bind(this);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
+        setContentView(view);
         setUpMenuClickListeners();
     }
 
     private void setUpMenuClickListeners() {
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, AddWordActivity.class);
-                startActivity(intent);
-            }
+        binding.buttonAddWord.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AddWordActivity.class);
+            startActivity(intent);
         });
 
-        trainingButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, SpinnerActivity.class);
-                startActivity(intent);
-            }
+        binding.buttonTraining.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SpinnerActivity.class);
+            startActivity(intent);
         });
 
-        historyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
-                startActivity(intent);
-            }
+        binding.buttonHistory.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, HistoryActivity.class);
+            startActivity(intent);
         });
     }
 

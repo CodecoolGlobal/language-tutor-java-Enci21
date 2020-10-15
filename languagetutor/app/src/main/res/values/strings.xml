@@ -6,7 +6,7 @@
     <string name="save_btn_label">Save</string>
     <string name="spinner_btn_label">Let\'s go!</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="check_btn_label">Check</string>
     <string name="enter_the_translation_here">Enter the translation here</string>
     <string name="enter_the_word">Enter the word</string>
@@ -17,7 +17,7 @@
     <string name="empty_db_msg">You do not have enough words in memory yet!</string>
     <string name="options_menu_reminder">Reminder</string>
     <string name="reminder_title">Set Practice Reminder</string>
-    <string name="time_text">00:00</string>
+    <string name="time_text" translatable="false">00:00</string>
     <string name="pick_time_btn_text">Pick Time</string>
     <string name="save_btn_text">Save</string>
     <string name="you_finished_the_training">YOU FINISHED THE TRAINING!</string>
@@ -28,7 +28,7 @@
     <string name="reminder_saved_toast_msg">Reminder Saved!</string>
     <string name="reminder_past_time_msg">Cannot select past time</string>
     <string name="correct_answer_msg">Correct!</string>
-    <string name="flag_image_desc">flag_image</string>
-    <string name="splash_title">Language Tutor</string>
+    <string name="flag_image_desc" translatable="false">flag_image</string>
+    <string name="splash_title" translatable="false">Language Tutor</string>
     <string name="add_word_empty_field">You must fill out both fields!</string>
 </resources>
