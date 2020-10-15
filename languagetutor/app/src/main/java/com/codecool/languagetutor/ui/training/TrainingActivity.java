@@ -77,11 +77,6 @@ public class TrainingActivity extends AppCompatActivity implements TrainingContr
     }
 
     @Override
-    public void showEmptyDatabaseMessage() {
-        Toast.makeText(this, R.string.empty_db_msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void onResult(boolean isCorrect, Word word) {
         if (!isCorrect) {
             incorrectWordsAmount++;

@@ -9,6 +9,69 @@
     android:id="@+id/main_activity"
     tools:context=".ui.MainActivity">
 
+    <LinearLayout
+        android:id="@id/linearlayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:showDividers="middle"
+        android:divider="@drawable/empty_tall_divider"
+        android:layout_marginTop="@dimen/margin_32"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/flag1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/flag_image_desc"
+            android:src="@drawable/flaghu" />
+
+        <ImageView
+            android:id="@+id/flag2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/flag_image_desc"
+            android:src="@drawable/german" />
+
+        <ImageView
+            android:id="@+id/flag3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/flag_image_desc"
+            android:src="@drawable/danish" />
+
+        <ImageView
+            android:id="@+id/flag4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/flag_image_desc"
+            android:src="@drawable/english" />
+
+        <ImageView
+            android:id="@+id/flag5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/flag_image_desc"
+            android:src="@drawable/french" />
+
+        <ImageView
+            android:id="@+id/flag6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/flag_image_desc"
+            android:src="@drawable/fin" />
+
+        <ImageView
+            android:id="@+id/flag7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/flag_image_desc"
+            android:src="@drawable/greece" />
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/button_add_word"
         android:layout_width="@dimen/button_width"
@@ -20,7 +83,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearlayout"
         app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
