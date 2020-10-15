@@ -1,4 +1,4 @@
 package com.codecool.languagetutor.ui;
 
-public interface BaseView<BasePresenter> {
+public interface BaseView {
 }

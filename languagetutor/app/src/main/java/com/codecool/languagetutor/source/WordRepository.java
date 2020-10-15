@@ -45,5 +45,8 @@ public class WordRepository {
         return dao.getAllHistory();
     }
 
+    public Single<Integer> getWordsCount() {
+        return dao.getWordCount();
+    }
 }
 

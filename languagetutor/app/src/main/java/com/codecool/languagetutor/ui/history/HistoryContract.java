@@ -8,16 +8,14 @@ import java.util.List;
 
 public interface HistoryContract {
 
-    interface View extends BaseView<Presenter> {
+    interface View extends BaseView {
 
         void showHistory(List<History> history);
 
         void showEmptyHistory();
     }
 
-    interface Presenter extends BasePresenter {
-
-        void onAttach(HistoryContract.View view);
+    interface Presenter extends BasePresenter<HistoryContract.View> {
 
         void getAllHistory();
     }
