@@ -2,6 +2,7 @@ package com.codecool.languagetutor.di;
 
 import com.codecool.languagetutor.ui.addword.AddWordActivity;
 import com.codecool.languagetutor.ui.history.HistoryActivity;
+import com.codecool.languagetutor.ui.spinner.SpinnerActivity;
 import com.codecool.languagetutor.ui.training.TrainingActivity;
 
 import dagger.Component;
@@ -14,4 +15,6 @@ public interface AppComponent {
     void injectHistory(HistoryActivity activity);
 
     void inject(AddWordActivity activity);
+
+    void inject(SpinnerActivity activity);
 }

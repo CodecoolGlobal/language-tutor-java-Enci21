@@ -20,7 +20,7 @@ import io.reactivex.schedulers.Schedulers;
 public class TrainingPresenter implements TrainingContract.Presenter {
 
     @Inject
-    public TrainingPresenter( WordRepository repository) {
+    public TrainingPresenter(WordRepository repository) {
         this.repository = repository;
     }
 
@@ -56,20 +56,16 @@ public class TrainingPresenter implements TrainingContract.Presenter {
 
                     @Override
                     public void onSuccess(List<Word> words) {
-                        if (words.size() == 0 || words.size() < rounds) {
-                            view.showEmptyDatabaseMessage();
-                        } else {
-                                List<Integer> list = new ArrayList<>();
-                                for (int i = 0; i < words.size(); i++) {
-                                    list.add(i);
-                                }
-                                Collections.shuffle(list);
-                                List<Word> trainingWords = new ArrayList();
-                                for (int i = 0; i < rounds; i++) {
-                                    trainingWords.add(words.get(list.get(i)));
-                                }
-                                view.showFragments(trainingWords);
+                        List<Integer> list = new ArrayList<>();
+                        for (int i = 0; i < words.size(); i++) {
+                            list.add(i);
                         }
+                        Collections.shuffle(list);
+                        List<Word> trainingWords = new ArrayList();
+                        for (int i = 0; i < rounds; i++) {
+                            trainingWords.add(words.get(list.get(i)));
+                        }
+                        view.showFragments(trainingWords);
                     }
 
                     @Override

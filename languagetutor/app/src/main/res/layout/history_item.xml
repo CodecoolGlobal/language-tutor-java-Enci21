@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="@dimen/margin_8"
     android:layout_marginTop="@dimen/margin_8"
     android:layout_marginEnd="@dimen/margin_8"
@@ -12,13 +13,15 @@
         android:id="@+id/ratioTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_32"
+        android:layout_marginStart="@dimen/margin_32"
         android:textColor="@color/text"
         android:textSize="@dimen/text_16"
         android:textStyle="bold"
-        android:layout_marginLeft="@dimen/margin_32"
-        android:layout_marginStart="@dimen/margin_32"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBaseline_toBaselineOf="@+id/dateTextView"
-        app:layout_constraintStart_toEndOf="@+id/dateTextView" />
+        app:layout_constraintStart_toEndOf="@+id/dateTextView"
+        tools:text="blabfljfba" />
 
     <TextView
         android:id="@+id/dateTextView"
@@ -26,8 +29,10 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/margin_16"
         android:textColor="@color/text"
+        tools:text="blabfljfba"
         android:textSize="@dimen/text_20"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/ratioTextView"
         android:layout_marginStart="@dimen/margin_16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,10 +41,12 @@
         android:id="@+id/incorrect_words"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_8"
         android:layout_marginLeft="@dimen/margin_8"
+        android:layout_marginStart="@dimen/margin_8"
+        android:layout_marginTop="@dimen/margin_16"
         android:textColor="@color/text"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dateTextView" />
+        app:layout_constraintTop_toBottomOf="@+id/dateTextView"
+        tools:text="blabfljfba+\nnjksndjkgn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
