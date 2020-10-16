@@ -11,6 +11,7 @@ An android application in aiding you to memorize words. You have the full freedo
 * View Binding
 * Room persistence library
 * MVP architecture
+* Mockito, Junit, Espresso for testing
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
