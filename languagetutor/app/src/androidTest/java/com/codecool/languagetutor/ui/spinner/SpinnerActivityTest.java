@@ -11,6 +11,7 @@ import static androidx.test.espresso.Espresso.onData;
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.assertion.ViewAssertions.matches;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withSpinnerText;
 import static org.hamcrest.Matchers.allOf;
@@ -27,10 +28,20 @@ public class SpinnerActivityTest {
     public ActivityScenarioRule<SpinnerActivity> activityScenarioRule =
             new ActivityScenarioRule<SpinnerActivity>(SpinnerActivity.class);
 
+
     @Test
     public void test_checkSpinnerShowsCorrect_WhenSelectingOption() {
         onView(withId(R.id.spinner)).perform(click());
         onData(allOf(is(instanceOf(Integer.class)), is(option))).perform(click());
         onView(withId(R.id.spinner)).check(matches(withSpinnerText(option.toString())));
+    }
+
+    @Test
+    public void test_checkSpinnerButtonNavigates_toTrainingActivity() {
+        option = 5;
+        onView(withId(R.id.spinner)).perform(click());
+        onData(allOf(is(instanceOf(Integer.class)), is(option))).perform(click());
+        onView(withId(R.id.spinner_button)).perform(click());
+        onView(withId(R.id.training_activity)).check(matches(isDisplayed()));
     }
 }
