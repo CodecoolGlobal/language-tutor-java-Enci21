@@ -1,8 +1,5 @@
 package com.codecool.languagetutor.ui.spinner;
 
-import android.widget.Spinner;
-
-import com.codecool.languagetutor.HistoryTestData;
 import com.codecool.languagetutor.source.WordRepository;
 
 import org.junit.Before;
