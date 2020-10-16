@@ -1,7 +1,6 @@
 package com.codecool.languagetutor.ui.training;
 
 import com.codecool.languagetutor.WordTestData;
-import com.codecool.languagetutor.adapters.FragmentCollectionAdapter;
 import com.codecool.languagetutor.model.History;
 import com.codecool.languagetutor.source.WordRepository;
 
@@ -22,7 +21,6 @@ import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
