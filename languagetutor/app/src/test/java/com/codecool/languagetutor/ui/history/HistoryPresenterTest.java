@@ -9,6 +9,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Collections;
+
 import io.reactivex.Single;
 import io.reactivex.android.plugins.RxAndroidPlugins;
 import io.reactivex.plugins.RxJavaPlugins;
@@ -41,5 +43,12 @@ public class HistoryPresenterTest {
         given(repository.getAllHistory()).willReturn(Single.just(HistoryTestData.provideHistory));
         presenter.getAllHistory();
         verify(activity).showHistory(HistoryTestData.provideHistory);
+    }
+
+    @Test
+    public void test_emptyHistories() {
+        given(repository.getAllHistory()).willReturn(Single.just(Collections.emptyList()));
+        presenter.getAllHistory();
+        verify(activity).showEmptyHistory();
     }
 }
