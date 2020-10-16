@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
+import androidx.test.filters.MediumTest;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
@@ -37,34 +38,34 @@ public class MainActivityTest {
     }
 
     @Test
-    public void test_mainActivityIsVisible() {
+    public void test_mainActivity_IsVisible() {
         onView(withId(R.id.main_activity))
                 .check(matches(isDisplayed()));
     }
 
     @Test
-    public void test_menuButtonAddWordIsCorrect() {
+    public void test_menuButtonAddWord_IsCorrect() {
         onView(withId(R.id.button_add_word))
                 .check(matches(isDisplayed()))
                 .check(matches(withText(buttonAdd)));
     }
 
     @Test
-    public void test_menuButtonTrainIsCorrect() {
+    public void test_menuButtonTrain_IsCorrect() {
         onView(withId(R.id.button_training))
                 .check(matches(isDisplayed()))
                 .check(matches(withText(buttonTrain)));
     }
 
     @Test
-    public void test_menuButtonHistoryIsCorrect() {
+    public void test_menuButtonHistory_IsCorrect() {
         onView(withId(R.id.button_history))
                 .check(matches(isDisplayed()))
                 .check(matches(withText(buttonHistory)));
     }
 
     @Test
-    public void test_AddWordButtonNavigatesWhenClicked() {
+    public void test_AddWordButtonNavigates_ToAddWordActivty() {
         onView(withId(R.id.button_add_word))
                 .perform(click());
         onView(withId(R.id.add_word_activity))
@@ -72,7 +73,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void test_trainButtonNavigates() {
+    public void test_trainButtonNavigates_ToSpinnerActivity() {
         onView(withId(R.id.button_training))
                 .perform(click());
         onView(withId(R.id.spinner_activity))
@@ -80,7 +81,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void test_historyButtonNavigates() {
+    public void test_historyButtonNavigates_ToHistoryActivity() {
         onView(withId(R.id.button_history))
                 .perform(click());
         onView(withId(R.id.history_activity))
