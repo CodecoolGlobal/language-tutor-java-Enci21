@@ -68,4 +68,9 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-android-processor:2.28.3'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.28.3'
 
+    // Espresso
+    def androidx_test_espresso = "3.3.0"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$androidx_test_espresso"
+
+    testImplementation 'org.mockito:mockito-core:2.19.0'
 }

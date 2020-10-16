@@ -43,12 +43,9 @@ public class SpinnerActivity extends AppCompatActivity implements SpinnerContrac
     }
 
     private void setUpClickListener() {
-        binding.spinnerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int numberOfWords = Integer.parseInt(binding.spinner.getSelectedItem().toString());
-                presenter.getWordsCount(numberOfWords);
-            }
+        binding.spinnerButton.setOnClickListener(v -> {
+            int numberOfWords = Integer.parseInt(binding.spinner.getSelectedItem().toString());
+            presenter.getWordsCount(numberOfWords);
         });
     }
 
