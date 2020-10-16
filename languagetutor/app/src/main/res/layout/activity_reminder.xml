@@ -5,9 +5,11 @@
     android:layout_margin="@dimen/app_margin"
     android:background="@color/background"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/activity_reminder">
 
     <TextView
+        android:id="@+id/reminder_title"
         android:text="@string/reminder_title"
         style="@style/reminder_title" />
 
