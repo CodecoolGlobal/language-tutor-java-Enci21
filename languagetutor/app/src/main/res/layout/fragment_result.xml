@@ -29,7 +29,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_32"
-        android:background="@drawable/button_shape"
+        android:background="@drawable/btn_shape"
         android:text="@string/go_back_to_menu"
         android:textColor="@color/background"
         app:layout_constraintEnd_toEndOf="parent"
