@@ -25,29 +25,29 @@ These instructions will get you a copy of the project up and running on your loc
 
 1. Splash Screen (flags animated with ValueAnimator)
 
-![demosplash](demosplash.gif)
+![demosplash](demogifs/demosplash.gif)
 
 2.  Menu screen
 
-![demomenu](demomenu.png)
+![demomenu](demogifs/demomenu.png)
 
 3. Add new words
 
-![demoaddword](demoaddword.gif)
+![demoaddword](demogifs/demoaddword.gif)
 
 4. Train
 
-![demotraining](demotraining.gif)
+![demotraining](demogifs/demotraining.gif)
 
 5. Check history of your trainings
 
-![demohistory](demohistory.gif)
+![demohistory](demogifs/demohistory.gif)
 
 6. Set a reminder
 
-![demoreminder](demoreminder.gif)
+![demoreminder](demogifs/demoreminder.gif)
 
 7. Get notified
 
-![demonotification](demonotification.gif)
+![demonotification](demogifs/demonotification.gif)
 
