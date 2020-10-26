@@ -48,6 +48,7 @@ public class TrainingActivityTest {
     @Test
     public void test_BackgroundChanged_WhenWordSubmitted() {
         String word = "word";
+        String defaultBackground = "#96c9e6";
         onView(withId(R.id.training_activity))
                 .check(matches(isDisplayed()));
         onView(allOf(withId(R.id.answer), isDescendantOfA(firstChildOf(withId(R.id.pager)))))
@@ -55,11 +56,11 @@ public class TrainingActivityTest {
                 .perform(typeText(word), closeSoftKeyboard());
         onView(allOf(withId(R.id.check_button), isDescendantOfA(firstChildOf(withId(R.id.pager)))))
                 .perform(click());
-        onView(allOf(withId(R.id.check_button), isDescendantOfA(firstChildOf(withId(R.id.pager)))))
-                .check(matches(not((new BackgroundColorMatcher("#96c9e6")))));
+        onView(allOf(withId(R.id.answer), isDescendantOfA(firstChildOf(withId(R.id.pager)))))
+                .check(matches(not((new BackgroundColorMatcher(defaultBackground)))));
     }
 
-    class BackgroundColorMatcher extends BoundedMatcher<View, TextView> {
+    static class BackgroundColorMatcher extends BoundedMatcher<View, TextView> {
 
         private int color;
 
